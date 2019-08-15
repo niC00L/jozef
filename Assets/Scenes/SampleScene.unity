@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75d95fb30a72d54b9d80f2144a3fad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibles: []
 --- !u!4 &96899105
 Transform:
   m_ObjectHideFlags: 0
@@ -578,7 +579,7 @@ GameObject:
   - component: {fileID: 969198697}
   - component: {fileID: 969198696}
   m_Layer: 0
-  m_Name: spawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,7 +599,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTime: 1
   timer: 0
-  item: {fileID: 2022119536485099549, guid: 72caf9fb4cff6b34a9ec5d91baa21893, type: 3}
+  collectible: {fileID: 6307515141781324438, guid: f69d734a6958e314ea594a5ee77d3b60,
+    type: 3}
+  obstacle: {fileID: 2022119536485099549, guid: 72caf9fb4cff6b34a9ec5d91baa21893,
+    type: 3}
 --- !u!4 &969198697
 Transform:
   m_ObjectHideFlags: 0

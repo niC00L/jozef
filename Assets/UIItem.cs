@@ -12,7 +12,7 @@ public class UIItem : MonoBehaviour
     private void Awake()
     {
         sprite = GetComponent<Image>();
-        count = GetComponent<Text>();
+        count = GetComponentInChildren<Text>();
     }
 
     public void InitItem(InventoryItem item)

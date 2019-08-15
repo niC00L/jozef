@@ -6,7 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public float maxTime = 1;
     public float timer = 0;
-    public GameObject item;
+    public GameObject collectible;
+    public GameObject obstacle;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,10 @@ public class Spawner : MonoBehaviour
     {
         if (timer > maxTime)
         {
-            GameObject newitem = Instantiate(item);
+            //collectible.GetComponent<Collectible>().Set(0, "Fire");
+            GameObject newCollectible = Instantiate(collectible);
             //newitem.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
-            Destroy(newitem, 15);
+            Destroy(newCollectible, 10);
             timer = 0;
         }
 
