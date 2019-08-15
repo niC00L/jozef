@@ -7,12 +7,13 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> characterItems = new List<InventoryItem>();
     public Database database;
     public UIInventory inventoryUI;
+    private GameObject activeObstacle;
 
     public void Start()
     {
         foreach(var item in database.collectibles)
         {
-            characterItems.Add(new InventoryItem(0, item));
+            characterItems.Add(new InventoryItem(1, item));
         }
         for (int i = 0; i < characterItems.Count; i++)
         {
@@ -26,6 +27,11 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I)) {
             ToggleInventory();
         }
+    }
+
+    public void SetObstacle(GameObject obstacle)
+    {
+        activeObstacle = obstacle;
     }
 
     public void ToggleInventory()
@@ -50,6 +56,8 @@ public class Inventory : MonoBehaviour
 
             inventoryUI.gameObject.SetActive(false);
             Time.timeScale = 1;
+
+            activeObstacle.GetComponent<Obstacle>().UseItem(id);
         }
     }
 }

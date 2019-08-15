@@ -21,9 +21,9 @@ public class Database : MonoBehaviour
         };
 
         obstacles = new List<Obstacle>(){
-            new Obstacle(0, 2, "Red"),
-            new Obstacle(1, 0, "Green"),
-            new Obstacle(2, 1, "Blue")
+            new Obstacle(0, 1, "Red"),
+            new Obstacle(1, 2, "Green"),
+            new Obstacle(2, 0, "Blue")
         };
     }
 

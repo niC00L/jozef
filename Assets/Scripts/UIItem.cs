@@ -19,6 +19,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
     public void InitItem(InventoryItem item)
     {
         this.item = item;
+        count.text = item.count.ToString();
         sprite.sprite = item.item.icon;
     }
 

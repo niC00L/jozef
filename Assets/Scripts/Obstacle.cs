@@ -25,9 +25,10 @@ public class Obstacle: MonoBehaviour
         this.icon = Resources.Load<Sprite>("Sprites/Obstacles/" + obstacle.title);
     }
 
-    public void Set(int id, string title)
+    public void Set(int id, int destroyedBy, string title)
     {
         this.id = id;
+        this.destroyedBy = destroyedBy;
         this.title = title;
         icon = Resources.Load<Sprite>("Sprites/Obstacles/" + title);
         GetComponent<SpriteRenderer>().sprite = icon;
@@ -36,6 +37,7 @@ public class Obstacle: MonoBehaviour
     public void Set(Obstacle obstacle)
     {
         id = obstacle.id;
+        destroyedBy = obstacle.destroyedBy;
         title = obstacle.title;
         icon = Resources.Load<Sprite>("Sprites/Obstacles/" + obstacle.title);
         GetComponent<SpriteRenderer>().sprite = icon;
@@ -44,6 +46,16 @@ public class Obstacle: MonoBehaviour
     void OnMouseDown()
     {
         Inventory inv = FindObjectOfType<Inventory>();
+        inv.SetObstacle(gameObject);
         inv.ToggleInventory();
+    }
+
+    public void UseItem(int itemId)
+    {
+        Debug.Log("Item used " + itemId.ToString());
+        if (itemId == destroyedBy)
+        {
+            Destroy(gameObject);
+        }
     }
 }
