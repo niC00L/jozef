@@ -8,19 +8,13 @@ public class Spawner : MonoBehaviour
     public float timer = 0;
     public GameObject collectible;
     public GameObject obstacle;
+    public Database database;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (timer > maxTime)
         {
-            //collectible.GetComponent<Collectible>().Set(0, "Fire");
+            collectible.GetComponent<Collectible>().Set(database.GetCollectible());
             GameObject newCollectible = Instantiate(collectible);
             //newitem.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
             Destroy(newCollectible, 10);

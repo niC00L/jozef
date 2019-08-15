@@ -26,4 +26,14 @@ public class Database : MonoBehaviour
             new Obstacle(2, 1, "Air")
         };
     }
+
+    public Collectible GetCollectible()
+    {
+        return collectibles[Random.Range(0, 3)];
+    }
+
+    public Obstacle GetObstacle()
+    {
+        return obstacles[Random.Range(0, 3)];
+    }
 }

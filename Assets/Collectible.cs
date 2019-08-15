@@ -26,7 +26,16 @@ public class Collectible: MonoBehaviour
     {
         this.id = id;
         this.title = title;
-        this.icon = Resources.Load<Sprite>("Sprites/Collectibles/" + title);
+        icon = Resources.Load<Sprite>("Sprites/Collectibles/" + title);
+        GetComponent<SpriteRenderer>().sprite = icon;
+    }
+
+    public void Set(Collectible collectible)
+    {
+        this.id = collectible.id;
+        this.title = collectible.title;
+        icon = Resources.Load<Sprite>("Sprites/Collectibles/" + collectible.title);
+        GetComponent<SpriteRenderer>().sprite = icon;
     }
 
     void OnMouseDown()

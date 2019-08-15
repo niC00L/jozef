@@ -603,6 +603,7 @@ MonoBehaviour:
     type: 3}
   obstacle: {fileID: 2022119536485099549, guid: 72caf9fb4cff6b34a9ec5d91baa21893,
     type: 3}
+  database: {fileID: 96899104}
 --- !u!4 &969198697
 Transform:
   m_ObjectHideFlags: 0
