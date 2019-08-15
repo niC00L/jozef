@@ -40,8 +40,11 @@ public class Collectible: MonoBehaviour
 
     void OnMouseDown()
     {
-        Inventory inv = GameObject.Find("Inventory").GetComponent<Inventory>();
-        inv.GiveItem(this.id);
-        Destroy(this.gameObject);
+        if (Time.timeScale == 1)
+        {
+            Inventory inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+            inv.GiveItem(this.id);
+            Destroy(this.gameObject);
+        }
     }
 }

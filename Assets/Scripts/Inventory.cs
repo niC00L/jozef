@@ -24,7 +24,9 @@ public class Inventory : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.I)) {
+            int boolInt = inventoryUI.gameObject.activeSelf ? 1 : 0;
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+            Time.timeScale = boolInt;
         }
     }
 
@@ -40,6 +42,9 @@ public class Inventory : MonoBehaviour
         {
             characterItems[id].count -= 1;
             inventoryUI.UpdateSlot(id, characterItems[id].count);
+
+            inventoryUI.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 }
