@@ -43,6 +43,7 @@ public class Obstacle: MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Obstacle clicked");
+        Inventory inv = FindObjectOfType<Inventory>();
+        inv.ToggleInventory();
     }
 }

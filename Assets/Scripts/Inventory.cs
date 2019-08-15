@@ -24,10 +24,15 @@ public class Inventory : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.I)) {
-            int boolInt = inventoryUI.gameObject.activeSelf ? 1 : 0;
-            inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
-            Time.timeScale = boolInt;
+            ToggleInventory();
         }
+    }
+
+    public void ToggleInventory()
+    {
+        int boolInt = inventoryUI.gameObject.activeSelf ? 1 : 0;
+        inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+        Time.timeScale = boolInt;
     }
 
     public void GiveItem(int id)
