@@ -18,6 +18,14 @@ public class Inventory : MonoBehaviour
         {
             inventoryUI.InitSlot(i, characterItems[i]);
         }
+        inventoryUI.gameObject.SetActive(false);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I)) {
+            inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+        }
     }
 
     public void GiveItem(int id)

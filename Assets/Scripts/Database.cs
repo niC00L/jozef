@@ -21,12 +21,14 @@ public class Database : MonoBehaviour
         };
 
         obstacles = new List<Obstacle>(){
-            new Obstacle(0, 2, "Water"),
-            new Obstacle(1, 0, "Fire"),
-            new Obstacle(2, 1, "Air")
+            new Obstacle(0, 2, "Red"),
+            new Obstacle(1, 0, "Green"),
+            new Obstacle(2, 1, "Blue")
         };
     }
 
+
+    //TODO generate stuff smarter
     public Collectible GetCollectible()
     {
         return collectibles[Random.Range(0, 3)];

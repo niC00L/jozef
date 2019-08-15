@@ -32,8 +32,8 @@ public class Collectible: MonoBehaviour
 
     public void Set(Collectible collectible)
     {
-        this.id = collectible.id;
-        this.title = collectible.title;
+        id = collectible.id;
+        title = collectible.title;
         icon = Resources.Load<Sprite>("Sprites/Collectibles/" + collectible.title);
         GetComponent<SpriteRenderer>().sprite = icon;
     }

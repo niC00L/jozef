@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle
+public class Obstacle: MonoBehaviour
 {
     public int id;
     public int destroyedBy;
@@ -23,5 +23,26 @@ public class Obstacle
         this.destroyedBy = obstacle.destroyedBy;
         this.title = obstacle.title;
         this.icon = Resources.Load<Sprite>("Sprites/Obstacles/" + obstacle.title);
+    }
+
+    public void Set(int id, string title)
+    {
+        this.id = id;
+        this.title = title;
+        icon = Resources.Load<Sprite>("Sprites/Obstacles/" + title);
+        GetComponent<SpriteRenderer>().sprite = icon;
+    }
+
+    public void Set(Obstacle obstacle)
+    {
+        id = obstacle.id;
+        title = obstacle.title;
+        icon = Resources.Load<Sprite>("Sprites/Obstacles/" + obstacle.title);
+        GetComponent<SpriteRenderer>().sprite = icon;
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log("Obstacle clicked");
     }
 }
