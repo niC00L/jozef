@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
         inventoryUI.UpdateSlot(id, characterItems[id].count);
     }
 
-    public void RemoveItem(int id)
+    public void UseItem(int id)
     {
         if (characterItems[id].count >= 1)
         {

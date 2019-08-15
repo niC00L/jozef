@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIItem : MonoBehaviour
+public class UIItem : MonoBehaviour, IPointerDownHandler
 {
     public InventoryItem item;
     private Image sprite;
@@ -25,5 +26,11 @@ public class UIItem : MonoBehaviour
     {
         item.count = count;
         this.count.text = count.ToString();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Inventory inv = FindObjectOfType<Inventory>();
+        inv.UseItem(item.item.id);
     }
 }
