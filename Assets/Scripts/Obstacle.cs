@@ -52,7 +52,6 @@ public class Obstacle: MonoBehaviour
 
     public void UseItem(int itemId)
     {
-        Debug.Log("Item used " + itemId.ToString());
         if (itemId == destroyedBy)
         {
             Destroy(gameObject);
