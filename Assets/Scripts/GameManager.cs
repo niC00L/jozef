@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        inventoryPanel.SetActive(false);
+        onScreenPanel.SetActive(false);
+        menuPanel.SetActive(false);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
     }

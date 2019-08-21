@@ -45,9 +45,12 @@ public class Obstacle: MonoBehaviour
 
     void OnMouseDown()
     {
-        Inventory inv = FindObjectOfType<Inventory>();
-        inv.SetObstacle(gameObject);
-        inv.ToggleInventory();
+        if (Time.timeScale == 1)
+        {
+            Inventory inv = FindObjectOfType<Inventory>();
+            inv.SetObstacle(gameObject);
+            inv.ToggleInventory();
+        }
     }
 
     public void UseItem(int itemId)
