@@ -59,4 +59,10 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void CloseInventory()
+    {
+        inventoryPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
 }
