@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 86c9b0074d8b01242b1452d72a5a84b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9421af181d2b424468d373a088f60d19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed7db50acfcc544d901f7e0431537d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
 --- !u!114 &2264492509096355666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c52d762eab90643b5420b1c444eb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  title: Fire
-  icon: {fileID: 21300000, guid: 86c9b0074d8b01242b1452d72a5a84b4, type: 3}
+  id: 2
+  title: Air
+  icon: {fileID: 21300000, guid: 9421af181d2b424468d373a088f60d19, type: 3}
 --- !u!70 &1902338294430875126
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -124,5 +124,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.78433466, y: 1}
+  m_Size: {x: 1.3884559, y: 1.3884559}
   m_Direction: 0
