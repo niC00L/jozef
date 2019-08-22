@@ -49,7 +49,7 @@ public class Obstacle: MonoBehaviour
         {
             Inventory inv = FindObjectOfType<Inventory>();
             inv.SetObstacle(gameObject);
-            inv.ToggleInventory();
+            inv.OpenInventory();
         }
     }
 

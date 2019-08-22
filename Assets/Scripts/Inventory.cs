@@ -7,6 +7,9 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> characterItems = new List<InventoryItem>();
     public Database database;
     public UIInventory inventoryUI;
+    [Range(0.0f, 1.0f)]
+    public float inventoryOpenSpeed = 0.25f;
+    public float inventoryOpenTime = 3;
     private GameObject activeObstacle;
 
     public void Start()
@@ -24,9 +27,6 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)) {
-            ToggleInventory();
-        }
     }
 
     public void SetObstacle(GameObject obstacle)
@@ -34,11 +34,10 @@ public class Inventory : MonoBehaviour
         activeObstacle = obstacle;
     }
 
-    public void ToggleInventory()
+    public void OpenInventory()
     {
-        int boolInt = inventoryUI.gameObject.activeSelf ? 1 : 0;
-        inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
-        Time.timeScale = boolInt;
+        inventoryUI.gameObject.SetActive(true);
+        Time.timeScale = inventoryOpenSpeed;
     }
 
     public void GiveItem(int id)
