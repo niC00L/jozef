@@ -9,12 +9,14 @@ public class Inventory : MonoBehaviour
     public UIInventory inventoryUI;
     [Range(0.0f, 1.0f)]
     public float inventoryOpenSpeed = 0.25f;
-    public float inventoryOpenTime = 3;
+    public float inventoryOpenTime = 3.0f;
+    private float inventoryOpenTimeLeft;
     private GameObject activeObstacle;
 
     public void Start()
     {
-        foreach(var item in database.collectibles)
+        inventoryOpenTimeLeft = inventoryOpenTime;
+        foreach (var item in database.collectibles)
         {
             characterItems.Add(new InventoryItem(1, item));
         }
@@ -27,6 +29,17 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
+        //TODO display progress bar
+        //TODO fix pause game when dead
+        if (inventoryOpenTimeLeft <= 0.0f)
+        {
+            inventoryUI.gameObject.SetActive(false);
+            Time.timeScale = 1;
+        } 
+        if (inventoryUI.gameObject.activeSelf == true)
+        {
+            inventoryOpenTimeLeft -= 0.1f;
+        }
     }
 
     public void SetObstacle(GameObject obstacle)
@@ -36,8 +49,9 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
+        inventoryOpenTimeLeft = inventoryOpenTime;
         inventoryUI.gameObject.SetActive(true);
-        Time.timeScale = inventoryOpenSpeed;
+        Time.timeScale = inventoryOpenSpeed;        
     }
 
     public void GiveItem(int id)
