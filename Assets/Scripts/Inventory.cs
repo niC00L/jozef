@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class Inventory : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float inventoryOpenSpeed = 0.25f;
     public float inventoryOpenTime = 3.0f;
-    private float inventoryOpenTimeLeft;
+
+    private Slider slider;
+    private float inventoryOpenTimeLeft = 0.0f;
     private GameObject activeObstacle;
 
     public void Start()
     {
+        slider = inventoryUI.GetComponentInChildren<Slider>();
         inventoryOpenTimeLeft = inventoryOpenTime;
         foreach (var item in database.collectibles)
         {
@@ -29,10 +33,10 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        //TODO display progress bar
-        //TODO fix pause game when dead
+        slider.value = inventoryOpenTimeLeft / inventoryOpenTime;
         if (inventoryOpenTimeLeft <= 0.0f)
         {
+            Debug.Log(inventoryOpenTimeLeft);
             inventoryUI.gameObject.SetActive(false);
             Time.timeScale = 1;
         } 

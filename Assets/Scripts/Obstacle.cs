@@ -47,7 +47,7 @@ public class Obstacle: MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
-            Inventory inv = FindObjectOfType<Inventory>();
+            Inventory inv = FindObjectOfType<Inventory>();            
             inv.SetObstacle(gameObject);
             inv.OpenInventory();
         }
