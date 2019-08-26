@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject onScreenPanel;
 
     private int score;
-    public bool gameOver = false;
+    private bool gameOver = false;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             menuPanel.SetActive(true);
@@ -41,7 +42,17 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
         gameOverPanel.SetActive(true);
         gameOver = true;
+        var scoreUI = gameOverPanel.transform.Find("Score").GetComponent<Text>();
+        scoreUI.text = score.ToString();
+
         Time.timeScale = 0;
+    }
+
+    public void ObstacleDestroyed(int points)
+    {
+        var scoreUI = onScreenPanel.transform.Find("Score").GetComponent<Text>();
+        score += points;
+        scoreUI.text = score.ToString();
     }
 
     public void Pause()

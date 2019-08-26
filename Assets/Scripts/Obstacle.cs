@@ -58,6 +58,8 @@ public class Obstacle: MonoBehaviour
         if (itemId == destroyedBy)
         {
             Destroy(gameObject);
+            GameManager manager = FindObjectOfType<GameManager>();
+            manager.ObstacleDestroyed(1);
         }
     }
 }

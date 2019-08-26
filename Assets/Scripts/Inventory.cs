@@ -36,7 +36,6 @@ public class Inventory : MonoBehaviour
         slider.value = inventoryOpenTimeLeft / inventoryOpenTime;
         if (inventoryOpenTimeLeft <= 0.0f)
         {
-            Debug.Log(inventoryOpenTimeLeft);
             inventoryUI.gameObject.SetActive(false);
             Time.timeScale = 1;
         } 
