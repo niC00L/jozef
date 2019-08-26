@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     public List<InventoryItem> characterItems = new List<InventoryItem>();
     public Database database;
     public UIInventory inventoryUI;
+    [Range(0.0f, 1.0f)]
+    public float inventoryOpenSpeed = 0.25f;
+    public float inventoryOpenTime = 3.0f;
+
+    private Slider slider;
+    private float inventoryOpenTimeLeft = 0.0f;
     private GameObject activeObstacle;
 
     public void Start()
     {
-        foreach(var item in database.collectibles)
+        slider = inventoryUI.GetComponentInChildren<Slider>();
+        inventoryOpenTimeLeft = inventoryOpenTime;
+        foreach (var item in database.collectibles)
         {
             characterItems.Add(new InventoryItem(1, item));
         }
@@ -24,8 +33,16 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)) {
-            ToggleInventory();
+        slider.value = inventoryOpenTimeLeft / inventoryOpenTime;
+        if (inventoryOpenTimeLeft <= 0.0f)
+        {
+            Debug.Log(inventoryOpenTimeLeft);
+            inventoryUI.gameObject.SetActive(false);
+            Time.timeScale = 1;
+        } 
+        if (inventoryUI.gameObject.activeSelf == true)
+        {
+            inventoryOpenTimeLeft -= 0.1f;
         }
     }
 
@@ -34,11 +51,11 @@ public class Inventory : MonoBehaviour
         activeObstacle = obstacle;
     }
 
-    public void ToggleInventory()
+    public void OpenInventory()
     {
-        int boolInt = inventoryUI.gameObject.activeSelf ? 1 : 0;
-        inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
-        Time.timeScale = boolInt;
+        inventoryOpenTimeLeft = inventoryOpenTime;
+        inventoryUI.gameObject.SetActive(true);
+        Time.timeScale = inventoryOpenSpeed;        
     }
 
     public void GiveItem(int id)

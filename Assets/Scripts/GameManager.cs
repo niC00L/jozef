@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject onScreenPanel;
 
+    private int score;
+    public bool gameOver = false;
+
     void Start()
     {
         onScreenPanel.SetActive(false);
@@ -25,6 +28,10 @@ public class GameManager : MonoBehaviour
             menuPanel.SetActive(true);
             Time.timeScale = 0;
         }
+        if (gameOver)
+        {
+            Time.timeScale = 0;
+        }
     }
 
     public void GameOver()
@@ -33,6 +40,7 @@ public class GameManager : MonoBehaviour
         onScreenPanel.SetActive(false);
         menuPanel.SetActive(false);
         gameOverPanel.SetActive(true);
+        gameOver = true;
         Time.timeScale = 0;
     }
 
