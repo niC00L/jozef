@@ -22,12 +22,12 @@ public class Spawner : MonoBehaviour
                 collectible.GetComponent<Collectible>().Set(database.GetCollectible());
                 GameObject newCollectible = Instantiate(collectible);
                 Destroy(newCollectible, 10);
-                //newitem.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
+                newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 5.0f), 0.0f);
             }
             else
             {
                 obstacle.GetComponent<Obstacle>().Set(database.GetObstacle());
-                GameObject newObstacle= Instantiate(obstacle);
+                GameObject newObstacle = Instantiate(obstacle);
                 Destroy(newObstacle, 10);
             }
             timer = 0;
