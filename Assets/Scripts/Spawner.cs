@@ -21,17 +21,19 @@ public class Spawner : MonoBehaviour
             {
                 collectible.GetComponent<Collectible>().Set(database.GetCollectible());
                 GameObject newCollectible = Instantiate(collectible);
-                Destroy(newCollectible, 10);
                 newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
                 newCollectible.GetComponent<Move>().speed += Random.Range(-1.0f, 1.0f);
+                Destroy(newCollectible, 10);
             }
             else
             {
                 obstacle.GetComponent<Obstacle>().Set(database.GetObstacle());
                 GameObject newObstacle = Instantiate(obstacle);
+                newObstacle.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 3.0f), 0.0f);
+                newObstacle.GetComponent<Move>().speed += Random.Range(-0.5f, 0.5f);
                 Destroy(newObstacle, 10);
             }
-        timer = 0;
+            timer = 0;
             fn++;
         }
         timer += Time.deltaTime;
