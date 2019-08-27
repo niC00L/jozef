@@ -22,7 +22,8 @@ public class Spawner : MonoBehaviour
                 collectible.GetComponent<Collectible>().Set(database.GetCollectible());
                 GameObject newCollectible = Instantiate(collectible);
                 Destroy(newCollectible, 10);
-                newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 5.0f), 0.0f);
+                newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
+                newCollectible.GetComponent<Move>().speed += Random.Range(-1.0f, 1.0f);
             }
             else
             {
@@ -30,7 +31,7 @@ public class Spawner : MonoBehaviour
                 GameObject newObstacle = Instantiate(obstacle);
                 Destroy(newObstacle, 10);
             }
-            timer = 0;
+        timer = 0;
             fn++;
         }
         timer += Time.deltaTime;
