@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7bf032c749dc4d3459f80509f1c24128, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 935a7085ab1713245895b3ec675476b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d031f660c8bbd43b1f5b915f7dc13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  destroyedBy: 1
-  title: Red
-  icon: {fileID: 21300000, guid: 7bf032c749dc4d3459f80509f1c24128, type: 3}
+  id: 2
+  destroyedBy: 0
+  title: Blue
+  icon: {fileID: 21300000, guid: 935a7085ab1713245895b3ec675476b2, type: 3}

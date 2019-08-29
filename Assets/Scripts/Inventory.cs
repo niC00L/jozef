@@ -22,8 +22,9 @@ public class Inventory : MonoBehaviour
         inventoryOpenTimeLeft = inventoryOpenTime;
         foreach (var item in database.collectibles)
         {
-            characterItems.Add(new InventoryItem(1, item));
+            characterItems.Add(new InventoryItem(0, item));
         }
+        characterItems[0].count = 1;
         for (int i = 0; i < characterItems.Count; i++)
         {
             inventoryUI.InitSlot(i, characterItems[i]);

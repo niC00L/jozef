@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Database : MonoBehaviour
 {
     public List<Collectible> collectibles = new List<Collectible>();
     public List<Obstacle> obstacles = new List<Obstacle>();
+    public GameObject inventory;
 
     private void Awake()
     {
@@ -31,11 +33,18 @@ public class Database : MonoBehaviour
     //TODO generate stuff smarter
     public Collectible GetCollectible()
     {
+        //TODO dynamic range)
         return collectibles[Random.Range(0, 3)];
     }
 
     public Obstacle GetObstacle()
     {
-        return obstacles[Random.Range(0, 3)];
+        var playerItems = inventory.GetComponent<Inventory>().characterItems.Where(i => i.count >= 1).ToList();
+        if (playerItems.Count > 0)
+        {
+            var randomCollectible = playerItems[Random.Range(0, playerItems.Count)];
+            return obstacles.Where(x => x.destroyedBy == randomCollectible.item.id).SingleOrDefault();
+        }
+         return null;
     }
 }

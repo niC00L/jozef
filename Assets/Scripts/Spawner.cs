@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public float maxTime = 1;
+    public float maxTime = 2;
     public float timer = 0;
     public GameObject collectible;
     public GameObject obstacle;
@@ -27,11 +27,16 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                obstacle.GetComponent<Obstacle>().Set(database.GetObstacle());
-                GameObject newObstacle = Instantiate(obstacle);
-                newObstacle.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 3.0f), 0.0f);
-                newObstacle.GetComponent<Move>().speed += Random.Range(-0.5f, 0.5f);
-                Destroy(newObstacle, 10);
+                //TODO if player does not have item anymore after obstacle is spawned
+                var obsFromDb = database.GetObstacle();
+                if (obsFromDb is Obstacle)
+                {
+                    obstacle.GetComponent<Obstacle>().Set(database.GetObstacle());
+                    GameObject newObstacle = Instantiate(obstacle);
+                    newObstacle.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 3.0f), 0.0f);
+                    newObstacle.GetComponent<Move>().speed += Random.Range(-0.5f, 0.5f);
+                    Destroy(newObstacle, 10);
+                }
             }
             timer = 0;
             fn++;
