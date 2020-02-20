@@ -1,0 +1,499 @@
+fileFormatVersion: 2
+guid: e4cbe5b8895a1d144908c64f10d51e7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -784171329275730091
+    second: fox-trot_0
+  - first:
+      213: 3834010752499243379
+    second: fox-trot_1
+  - first:
+      213: 6752513059581387417
+    second: fox-trot_2
+  - first:
+      213: -5287498893202768708
+    second: fox-trot_3
+  - first:
+      213: 7572027616509369192
+    second: fox-trot_4
+  - first:
+      213: 7821047258556109514
+    second: fox-trot_5
+  - first:
+      213: 3964775662365947661
+    second: fox-trot_6
+  - first:
+      213: -1115484132855338595
+    second: fox-trot_7
+  - first:
+      213: 6956489092637698548
+    second: fox-trot_8
+  - first:
+      213: -6946863707555141387
+    second: fox-trot_9
+  - first:
+      213: 6361002834508735063
+    second: fox-trot_10
+  - first:
+      213: 2226037053969940834
+    second: fox-trot_11
+  - first:
+      213: -4928043345218007050
+    second: fox-trot_12
+  - first:
+      213: -3168421090729178526
+    second: fox-trot_13
+  - first:
+      213: 8672624111000821144
+    second: fox-trot_14
+  - first:
+      213: -6832667109365574673
+    second: fox-trot_15
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fox-trot_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1572
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7369a1fbf39694d93e51e2886632ad
+      internalID: -784171329275730091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_1
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1572
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c31ddaabde56544ab06aac7f0d837c3
+      internalID: 3834010752499243379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_2
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 1572
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a526515919057448730714e4678e80
+      internalID: 6752513059581387417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_3
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1572
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ceb870a52856e4d8fbd2797f422c67
+      internalID: -5287498893202768708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1106
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efa7917ea32a3948a3c89efff33ad92
+      internalID: 7572027616509369192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_5
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1106
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d732096bd710ff0458dc3ec30bf6486c
+      internalID: 7821047258556109514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_6
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 1106
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1521f1b2c00b414c8c1437a965e5b2c
+      internalID: 3964775662365947661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_7
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1106
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf001290181f18341bbda9e3d6bdac8a
+      internalID: -1115484132855338595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_8
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 640
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 663ef780fd43da247ba4ada6b6c83b14
+      internalID: 6956489092637698548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_9
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 640
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51b78e3209709e74786badc9b8991947
+      internalID: -6946863707555141387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_10
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 640
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff5a659f029b6e498e373ea0d3a3e2b
+      internalID: 6361002834508735063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_11
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 640
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fdc887d68b73c041a7957a35af70468
+      internalID: 2226037053969940834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 174
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf67759e072aaf545a6055efac925ea9
+      internalID: -4928043345218007050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_13
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 174
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04166d8b7a6d5e4381474c8bd5c2d49
+      internalID: -3168421090729178526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_14
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 174
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a4b573076e53ca4fb9f782ba71c2565
+      internalID: 8672624111000821144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fox-trot_15
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 174
+        width: 422
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34d08fb2d8a88343aab43e36830b2fb
+      internalID: -6832667109365574673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
