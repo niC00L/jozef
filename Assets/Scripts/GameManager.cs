@@ -72,13 +72,13 @@ public class GameManager : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GameScene");
         Time.timeScale = 1;
     }
 
-    public void Exit()
+    public void MainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void CloseInventory()
