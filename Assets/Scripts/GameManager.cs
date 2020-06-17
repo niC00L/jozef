@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Countdown(int seconds)
     {
+        onScreenPanel.transform.Find("PauseButton").gameObject.SetActive(false);
+        onScreenPanel.transform.Find("Score").gameObject.SetActive(false);
         int count = seconds;
         var countdownUI = onScreenPanel.transform.Find("Countdown").GetComponent<Text>();
 
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
             yield return WaitForUnscaledSeconds(1);
             count--;
         }
+        onScreenPanel.transform.Find("PauseButton").gameObject.SetActive(true);
+        onScreenPanel.transform.Find("Score").gameObject.SetActive(true);
         countdownUI.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
