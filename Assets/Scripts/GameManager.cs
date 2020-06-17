@@ -16,10 +16,42 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        onScreenPanel.SetActive(false);
+        onScreenPanel.SetActive(true);
         gameOverPanel.SetActive(false);
-        menuPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+
         Time.timeScale = 0;
+
+        StartCoroutine(Countdown(3));
+
+    }
+
+    private IEnumerator Countdown(int seconds)
+    {
+        int count = seconds;
+        var countdownUI = onScreenPanel.transform.Find("Countdown").GetComponent<Text>();
+
+        while (count > 0)
+        {
+            countdownUI.text = count.ToString();
+
+            yield return WaitForUnscaledSeconds(1);
+            count--;
+        }
+        countdownUI.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+
+    IEnumerator WaitForUnscaledSeconds(float dur)
+    {
+        var cur = 0f;
+        while (cur < dur)
+        {
+            yield return null;
+            cur += Time.unscaledDeltaTime;
+        }
     }
 
     private void Update()
