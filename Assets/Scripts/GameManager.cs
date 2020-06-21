@@ -16,10 +16,46 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        onScreenPanel.SetActive(false);
+        onScreenPanel.SetActive(true);
         gameOverPanel.SetActive(false);
-        menuPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+
         Time.timeScale = 0;
+
+        StartCoroutine(Countdown(3));
+
+    }
+
+    private IEnumerator Countdown(int seconds)
+    {
+        onScreenPanel.transform.Find("PauseButton").gameObject.SetActive(false);
+        onScreenPanel.transform.Find("Score").gameObject.SetActive(false);
+        int count = seconds;
+        var countdownUI = onScreenPanel.transform.Find("Countdown").GetComponent<Text>();
+
+        while (count > 0)
+        {
+            countdownUI.text = count.ToString();
+
+            yield return WaitForUnscaledSeconds(1);
+            count--;
+        }
+        onScreenPanel.transform.Find("PauseButton").gameObject.SetActive(true);
+        onScreenPanel.transform.Find("Score").gameObject.SetActive(true);
+        countdownUI.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+
+    IEnumerator WaitForUnscaledSeconds(float dur)
+    {
+        var cur = 0f;
+        while (cur < dur)
+        {
+            yield return null;
+            cur += Time.unscaledDeltaTime;
+        }
     }
 
     private void Update()
@@ -32,6 +68,17 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             Time.timeScale = 0;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Debug.Log(hit.transform.gameObject.name);
+            }
         }
     }
 
@@ -72,13 +119,13 @@ public class GameManager : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GameScene");
         Time.timeScale = 1;
     }
 
-    public void Exit()
+    public void MainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void CloseInventory()
