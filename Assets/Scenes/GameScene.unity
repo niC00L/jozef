@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 449580416}
   - component: {fileID: 449580415}
   - component: {fileID: 449580414}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 603819372}
   - component: {fileID: 603819371}
   - component: {fileID: 603819370}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2009,7 +2009,7 @@ GameObject:
   - component: {fileID: 917096227}
   - component: {fileID: 917096226}
   - component: {fileID: 917096225}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Clouds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: 1095703926}
   - component: {fileID: 1095703925}
   - component: {fileID: 1095703924}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3540,7 +3540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1681217446}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
