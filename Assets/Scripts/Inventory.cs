@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour
     public float inventoryOpenSpeed = 0.25f;
     public float inventoryOpenTime = 10.0f;
 
+    public UIItem selectedItem;
+
     private Slider slider;
     private float inventoryOpenTimeLeft = 0.0f;
     private GameObject activeObstacle;
@@ -35,7 +37,14 @@ public class Inventory : MonoBehaviour
     public void Update()
     {
         slider.value = inventoryOpenTimeLeft / inventoryOpenTime;
-        if (Input.GetMouseButtonUp(0) || inventoryOpenTimeLeft <= 0.0f)
+        if (Input.GetMouseButtonUp(0) && selectedItem)
+        {
+            UseItem(selectedItem.item.item.id);
+            selectedItem = null;
+            inventoryUI.gameObject.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else if (inventoryOpenTimeLeft <= 0.0f)
         {
             inventoryUI.gameObject.SetActive(false);
             Time.timeScale = 1;
@@ -72,9 +81,6 @@ public class Inventory : MonoBehaviour
         {
             characterItems[id].count -= 1;
             inventoryUI.UpdateSlot(id, characterItems[id].count);
-
-            inventoryUI.gameObject.SetActive(false);
-            Time.timeScale = 1;
 
             activeObstacle.GetComponent<Obstacle>().UseItem(id);
         }
