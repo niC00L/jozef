@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public UIInventory inventoryUI;
     [Range(0.0f, 1.0f)]
     public float inventoryOpenSpeed = 0.25f;
-    public float inventoryOpenTime = 3.0f;
+    public float inventoryOpenTime = 10.0f;
 
     private Slider slider;
     private float inventoryOpenTimeLeft = 0.0f;
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
     public void Update()
     {
         slider.value = inventoryOpenTimeLeft / inventoryOpenTime;
-        if (inventoryOpenTimeLeft <= 0.0f)
+        if (Input.GetMouseButtonUp(0) || inventoryOpenTimeLeft <= 0.0f)
         {
             inventoryUI.gameObject.SetActive(false);
             Time.timeScale = 1;
@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
         if (inventoryUI.gameObject.activeSelf == true)
         {
             inventoryOpenTimeLeft -= 0.1f;
-        }
+        }        
     }
 
     public void SetObstacle(GameObject obstacle)
@@ -53,9 +53,11 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
+        // for some reason it does not open 2 times in a row
         inventoryOpenTimeLeft = inventoryOpenTime;
         inventoryUI.gameObject.SetActive(true);
-        Time.timeScale = inventoryOpenSpeed;        
+        inventoryUI.transform.position = Input.mousePosition;        
+        Time.timeScale = inventoryOpenSpeed;
     }
 
     public void GiveItem(int id)

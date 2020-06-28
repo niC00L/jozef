@@ -46,8 +46,9 @@ public class Obstacle: MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log(Time.timeScale);
         if (Time.timeScale == 1)
-        {
+        {            
             Inventory inv = FindObjectOfType<Inventory>();            
             inv.SetObstacle(gameObject);
             inv.OpenInventory();

@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         inventoryPanel.SetActive(false);
 
         Time.timeScale = 0;
-
         StartCoroutine(Countdown(3));
 
     }
