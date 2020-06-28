@@ -14,13 +14,13 @@ public class Inventory : MonoBehaviour
 
     public UIItem selectedItem;
 
-    private Slider slider;
+    [SerializeField]
+    private Image timer;
     private float inventoryOpenTimeLeft = 0.0f;
     private GameObject activeObstacle;
 
     public void Start()
     {
-        slider = inventoryUI.GetComponentInChildren<Slider>();
         inventoryOpenTimeLeft = inventoryOpenTime;
         foreach (var item in database.collectibles)
         {
@@ -36,11 +36,14 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        slider.value = inventoryOpenTimeLeft / inventoryOpenTime;
-        if (Input.GetMouseButtonUp(0) && selectedItem)
+        timer.fillAmount = inventoryOpenTimeLeft / inventoryOpenTime;
+        if (Input.GetMouseButtonUp(0))
         {
-            UseItem(selectedItem.item.item.id);
-            selectedItem = null;
+            if (selectedItem)
+            {
+                UseItem(selectedItem.item.item.id);
+                selectedItem = null;
+            }
             inventoryUI.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
@@ -63,6 +66,7 @@ public class Inventory : MonoBehaviour
     public void OpenInventory()
     {
         // for some reason it does not open 2 times in a row
+        // only happens when there's image below the mouse pointer
         inventoryOpenTimeLeft = inventoryOpenTime;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.transform.position = Input.mousePosition;        
