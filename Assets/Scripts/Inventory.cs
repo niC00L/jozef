@@ -65,8 +65,6 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        // for some reason it does not open 2 times in a row
-        // only happens when there's image below the mouse pointer
         inventoryOpenTimeLeft = inventoryOpenTime;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.transform.position = Input.mousePosition;        

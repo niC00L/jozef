@@ -17,15 +17,15 @@ public class Database : MonoBehaviour
     void BuildDb()
     {
         collectibles = new List<Collectible>(){
-            new Collectible(0, "Water"),
-            new Collectible(1, "Fire"),
-            new Collectible(2, "Air")
+            new Collectible(0, "water"),
+            new Collectible(1, "axe"),
+            new Collectible(2, "pickaxe")
         };
 
         obstacles = new List<Obstacle>(){
-            new Obstacle(0, 1, "Red"),
-            new Obstacle(1, 2, "Green"),
-            new Obstacle(2, 0, "Blue")
+            new Obstacle(0, 1, "fence"),
+            new Obstacle(1, 0, "fire"),
+            new Obstacle(2, 2, "rock")
         };
     }
 
