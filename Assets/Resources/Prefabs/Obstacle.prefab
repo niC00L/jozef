@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1806bca658eabad4da2c3b133a593554, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fd73f484f900354bbbbadb14b9550cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,7 +114,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.57, y: 3.05}
+    oldSize: {x: 4.47, y: 4.12}
     newSize: {x: 4.47, y: 4.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d031f660c8bbd43b1f5b915f7dc13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  destroyedBy: 2
-  title: rock
-  icon: {fileID: 21300000, guid: 1806bca658eabad4da2c3b133a593554, type: 3}
+  id: 1
+  destroyedBy: 0
+  title: fire
+  icon: {fileID: 21300000, guid: 6fd73f484f900354bbbbadb14b9550cb, type: 3}
