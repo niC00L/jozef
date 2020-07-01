@@ -37,20 +37,9 @@ public class Inventory : MonoBehaviour
     public void Update()
     {
         timer.fillAmount = inventoryOpenTimeLeft / inventoryOpenTime;
-        if (Input.GetMouseButtonUp(0))
+        if (inventoryOpenTimeLeft <= 0.0f)
         {
-            if (selectedItem)
-            {
-                UseItem(selectedItem.item.item.id);
-                selectedItem = null;
-            }
-            inventoryUI.gameObject.SetActive(false);
-            Time.timeScale = 1;
-        }
-        else if (inventoryOpenTimeLeft <= 0.0f)
-        {
-            inventoryUI.gameObject.SetActive(false);
-            Time.timeScale = 1;
+            CloseInventory();
         } 
         if (inventoryUI.gameObject.activeSelf == true)
         {
@@ -71,6 +60,12 @@ public class Inventory : MonoBehaviour
         Time.timeScale = inventoryOpenSpeed;
     }
 
+    public void CloseInventory()
+    {
+        inventoryUI.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void GiveItem(int id)
     {
         characterItems[id].count += 1;
@@ -86,6 +81,7 @@ public class Inventory : MonoBehaviour
 
             activeObstacle.GetComponent<Obstacle>().UseItem(id);
         }
+        CloseInventory();
     }
 }
 
