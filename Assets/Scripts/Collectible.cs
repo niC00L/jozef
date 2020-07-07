@@ -7,6 +7,12 @@ public class Collectible: MonoBehaviour
     public int id;
     public string title;
     public Sprite icon;
+    private AudioClip sound;
+
+    private void Start()
+    {
+        sound = GetComponent<AudioSource>().clip;
+    }
 
     public Collectible(int id, string title)
     {
@@ -44,6 +50,8 @@ public class Collectible: MonoBehaviour
         {
             Inventory inv = GameObject.Find("Inventory").GetComponent<Inventory>();
             inv.GiveItem(id);
+            //sound.Play();
+            AudioSource.PlayClipAtPoint(sound, gameObject.transform.position);
             Destroy(gameObject);
         }
     }
