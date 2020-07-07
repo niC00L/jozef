@@ -8,6 +8,12 @@ public class Obstacle: MonoBehaviour
     public int destroyedBy;
     public string title;
     public Sprite icon;
+    private AudioClip sound;
+
+    private void Start()
+    {
+        sound = GetComponent<AudioSource>().clip;
+    }
 
     //TODO some obstacles are behind ground
     public Obstacle(int id, int destroyedBy, string title)
@@ -59,6 +65,7 @@ public class Obstacle: MonoBehaviour
     {
         if (itemId == destroyedBy)
         {
+            AudioSource.PlayClipAtPoint(sound, gameObject.transform.position);
             Destroy(gameObject);
             GameManager manager = FindObjectOfType<GameManager>();
             manager.ObstacleDestroyed(1);
