@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public GameManager gameManager;
+    [SerializeField]
+    private GameManager gameManager;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Obstacle")

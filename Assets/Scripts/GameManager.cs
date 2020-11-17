@@ -4,45 +4,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
-    public GameObject gameOverPanel;
-    public GameObject menuPanel;
-    public GameObject inventoryPanel;
-    public GameObject onScreenPanel;
+    //singleton
+    private static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
-    private int score;
+    [SerializeField]
+    private UIManager UIManager;
+
+    private int score = 0;
     private bool gameOver = false;
 
     void Start()
-    {
-        onScreenPanel.SetActive(true);
-        gameOverPanel.SetActive(false);
-        menuPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
-
+    {        
         Time.timeScale = 0;
         StartCoroutine(Countdown(3));
-
     }
 
     private IEnumerator Countdown(int seconds)
-    {
-        onScreenPanel.transform.Find("PauseButton").gameObject.SetActive(false);
-        onScreenPanel.transform.Find("Score").gameObject.SetActive(false);
+    {        
         int count = seconds;
-        var countdownUI = onScreenPanel.transform.Find("Countdown").GetComponent<Text>();
 
         while (count > 0)
         {
-            countdownUI.text = count.ToString();
-
+            UIManager.Countdown(count);            
             yield return WaitForUnscaledSeconds(1);
             count--;
         }
-        onScreenPanel.transform.Find("PauseButton").gameObject.SetActive(true);
-        onScreenPanel.transform.Find("Score").gameObject.SetActive(true);
-        countdownUI.gameObject.SetActive(false);
+        UIManager.CountdownFinish();
         Time.timeScale = 1;
     }
 
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
     {        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            menuPanel.SetActive(true);
+            UIManager.OpenMenu();
             Time.timeScale = 0;
         }
         if (gameOver)
@@ -83,53 +85,37 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        inventoryPanel.SetActive(false);
-        onScreenPanel.SetActive(false);
-        menuPanel.SetActive(false);
-        gameOverPanel.SetActive(true);
+        UIManager.GameOver(score);
         gameOver = true;
-        var scoreUI = gameOverPanel.transform.Find("Score").GetComponent<Text>();
-        scoreUI.text = score.ToString();
-
         Time.timeScale = 0;
     }
 
     public void ObstacleDestroyed(int points)
     {
-        var scoreUI = onScreenPanel.transform.Find("Score").GetComponent<Text>();
-        score += points;
-        scoreUI.text = score.ToString();
+        UIManager.SetScore(score + points);
     }
 
     public void Pause()
     {
-        inventoryPanel.SetActive(false);
-        onScreenPanel.SetActive(false);
-        menuPanel.SetActive(true);
         Time.timeScale = 0;
+        UIManager.Pause();
     }
 
     public void Continue()
     {
-        onScreenPanel.SetActive(true);
-        menuPanel.SetActive(false);
         Time.timeScale = 1;
+        UIManager.Continue();        
     }
 
     public void Replay()
     {
         SceneManager.LoadScene("GameScene");
         Time.timeScale = 1;
-    }
-
-    public void MainMenu()
-    {
-        SceneManager.LoadScene("MenuScene");
-    }
+    }    
 
     public void CloseInventory()
     {
-        inventoryPanel.SetActive(false);
+        UIManager.CloseInventory();
         Time.timeScale = 1;
     }
 
