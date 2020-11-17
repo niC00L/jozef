@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIItem : MonoBehaviour, IPointerDownHandler
 {
     public InventoryItem item;
     private Image sprite;
@@ -29,15 +29,10 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.count.text = count.ToString();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Inventory inv = FindObjectOfType<Inventory>();
-        inv.selectedItem = this;
-    }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Inventory inv = FindObjectOfType<Inventory>();
-        inv.selectedItem = null;
+        inv.UseItem(item.item.id);
     }
 }
