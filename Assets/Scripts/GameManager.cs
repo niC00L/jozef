@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    IEnumerator WaitForUnscaledSeconds(float dur)
+    public static IEnumerator WaitForUnscaledSeconds(float dur)
     {
         var cur = 0f;
         while (cur < dur)

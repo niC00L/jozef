@@ -152,8 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   database: {fileID: 96899104}
   inventoryUI: {fileID: 861513784}
-  inventoryOpenSpeed: 0.25
-  inventoryOpenTime: 10
+  inventoryOpenTimeScale: 0.25
+  inventoryOpenDuration: 2
   selectedItem: {fileID: 0}
   timer: {fileID: 1597603643}
 --- !u!4 &89189544

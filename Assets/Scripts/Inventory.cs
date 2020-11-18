@@ -9,19 +9,19 @@ public class Inventory : MonoBehaviour
     public Database database;
     public UIInventory inventoryUI;
     [Range(0.0f, 1.0f)]
-    public float inventoryOpenSpeed = 0.25f;
-    public float inventoryOpenTime = 10.0f;
+    //DIFF
+    public float inventoryOpenTimeScale = 0.25f;
+    //DIFF
+    public float inventoryOpenDuration = 3f;
 
     public UIItem selectedItem;
 
     [SerializeField]
     private Image timer;
-    private float inventoryOpenTimeLeft = 0.0f;
     private GameObject activeObstacle;
 
     public void Start()
     {
-        inventoryOpenTimeLeft = inventoryOpenTime;
         foreach (var item in database.collectibles)
         {
             characterItems.Add(new InventoryItem(0, item));
@@ -34,19 +34,6 @@ public class Inventory : MonoBehaviour
         inventoryUI.gameObject.SetActive(false);
     }
 
-    public void Update()
-    {
-        timer.fillAmount = inventoryOpenTimeLeft / inventoryOpenTime;
-        if (inventoryOpenTimeLeft <= 0.0f)
-        {
-            CloseInventory();
-        } 
-        if (inventoryUI.gameObject.activeSelf == true)
-        {
-            inventoryOpenTimeLeft -= 0.1f;
-        }        
-    }
-
     public void SetObstacle(GameObject obstacle)
     {
         activeObstacle = obstacle;
@@ -54,11 +41,26 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        inventoryOpenTimeLeft = inventoryOpenTime;
+        inventoryOpenTimeLeft = inventoryOpenDuration;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.transform.position = Input.mousePosition;        
-        Time.timeScale = inventoryOpenSpeed;
+        Time.timeScale = inventoryOpenTimeScale;
+        StartCoroutine(InventoryCountdown(inventoryOpenDuration));
     }
+
+    private IEnumerator InventoryCountdown(float seconds)
+    {
+        float count = seconds;
+
+        while (count > 0)
+        {
+            yield return GameManager.WaitForUnscaledSeconds(0.05f);
+            count -= 0.05f;
+            timer.fillAmount = count / inventoryOpenDuration;
+        }
+        CloseInventory();
+    }
+
 
     public void CloseInventory()
     {
