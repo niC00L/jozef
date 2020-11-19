@@ -15,14 +15,14 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        if (timer > maxTime)
+        if (timer > maxTime / DifficultyManager.GameSpeed)
         {
             if (fn % 2 == 0)
             {
                 collectible.GetComponent<Collectible>().Set(database.GetCollectible());
                 GameObject newCollectible = Instantiate(collectible);
                 newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
-                newCollectible.GetComponent<Move>().speed += Random.Range(-1.0f, 1.0f);
+                newCollectible.GetComponent<Move>().ChangeSpeed(Random.Range(-1.0f, 1.0f));
                 Destroy(newCollectible, 10);
             }
             else
@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
                     obstacle.GetComponent<Obstacle>().Set(database.GetObstacle());
                     GameObject newObstacle = Instantiate(obstacle);
                     //newObstacle.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 3.0f), 0.0f);
-                    newObstacle.GetComponent<Move>().speed += Random.Range(-0.5f, 0.5f);
+                    //newObstacle.GetComponent<Move>().speed += Random.Range(-0.5f, 0.5f);
                     Destroy(newObstacle, 10);
                 }
             }

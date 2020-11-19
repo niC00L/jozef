@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public float speed = 10;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    //speed by difficulty
+    private float speed = 4.9f;
+
     void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        transform.position += Vector3.left * speed * DifficultyManager.GameSpeed * Time.deltaTime;
+    }
+
+    public void ChangeSpeed(float speedAdd)
+    {
+        speed += speedAdd;
     }
 }

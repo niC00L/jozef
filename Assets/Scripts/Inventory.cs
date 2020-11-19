@@ -9,9 +9,9 @@ public class Inventory : MonoBehaviour
     public Database database;
     public UIInventory inventoryUI;
     [Range(0.0f, 1.0f)]
-    //DIFF
+    //speed by difficulty
     public float inventoryOpenTimeScale = 0.25f;
-    //DIFF
+    //speed by difficulty
     public float inventoryOpenDuration = 3f;
 
     public UIItem selectedItem;
@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
             inventoryUI.InitSlot(i, characterItems[i]);
         }
         inventoryUI.gameObject.SetActive(false);
+        inventoryOpenDuration /= DifficultyManager.GameSpeed;
     }
 
     public void SetObstacle(GameObject obstacle)
@@ -41,10 +42,9 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        inventoryOpenTimeLeft = inventoryOpenDuration;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.transform.position = Input.mousePosition;        
-        Time.timeScale = inventoryOpenTimeScale;
+        Time.timeScale = inventoryOpenTimeScale * DifficultyManager.GameSpeed;
         StartCoroutine(InventoryCountdown(inventoryOpenDuration));
     }
 
