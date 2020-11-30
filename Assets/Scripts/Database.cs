@@ -31,13 +31,28 @@ public class Database : MonoBehaviour
 
 
     //TODO generate stuff smarter
-    public Collectible GetCollectible()
+    public Collectible GetRandomCollectible()
     {
-        //TODO dynamic range)
-        return collectibles[Random.Range(0, 3)];
+        return collectibles[Random.Range(0, collectibles.Count)];
     }
 
-    public Obstacle GetObstacle()
+    public Collectible GetCollectibleByObstacle(int obstacleId)
+    {
+        Obstacle obs = obstacles[obstacleId];
+        return collectibles[obs.destroyedBy];
+    }
+
+    public Collectible GetCollectibleById(int collectibleId)
+    {
+        return collectibles[collectibleId];
+    }
+
+    public Obstacle GetRandomObstacle()
+    {
+        return obstacles[Random.Range(0, obstacles.Count)];
+    }
+
+    public Obstacle GetObstacleByInventory()
     {
         var playerItems = inventory.GetComponent<Inventory>().characterItems.Where(i => i.count >= 1).ToList();
         if (playerItems.Count > 0)
