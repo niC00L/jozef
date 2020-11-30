@@ -9,7 +9,6 @@ public class Obstacle: MonoBehaviour
     public string title;
     public Sprite icon;
 
-    //TODO some obstacles are behind ground
     public Obstacle(int id, int destroyedBy, string title)
     {
         this.id = id;
