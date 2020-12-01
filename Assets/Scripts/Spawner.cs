@@ -8,26 +8,19 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private GameObject collectible;
     [SerializeField]
-    private GameObject obstacle;
-
-    [SerializeField]
-    private float spawnDelay = 3f;
-
+    private GameObject obstacle;    
     [SerializeField]
     private Database database;
 
+    private bool generating = true;
+
     public int collectiblesBeforeObstacles = 2;
+    public float spawnDelay = 3f;
 
 
     private void Start()
     {
-        SpawnRandomObstacle();
-    }
-
-    void Update()
-    {
-        //SpawnRandomObstacle();
-        //StartCoroutine(SpawnRandomObstacle());
+        StartCoroutine(ContinuousSpawning());
     }
 
     private void SpawnCollectible(int collectibleId)
@@ -35,20 +28,31 @@ public class Spawner : MonoBehaviour
         collectible.GetComponent<Collectible>().Set(database.GetCollectibleById(collectibleId));
         GameObject newCollectible = Instantiate(collectible);
         newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
-        //newCollectible.GetComponent<Move>().ChangeSpeed(Random.Range(-1.0f, 1.0f));
         Destroy(newCollectible, 10);
     }
 
-    private void SpawnRandomObstacle()
+    private IEnumerator SpawnRandomObstacle()
     {
-        Obstacle obs = database.GetRandomObstacle();
-        for (int i = 0; i <= collectiblesBeforeObstacles; i++)
+        
+            Obstacle obs = database.GetRandomObstacle();
+            for (int i = 0; i < collectiblesBeforeObstacles; i++)
+            {
+                yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+                SpawnCollectible(obs.destroyedBy);
+            }
+            yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+            obstacle.GetComponent<Obstacle>().Set(obs);
+            GameObject newObstacle = Instantiate(obstacle);
+        
+    }
+
+    private IEnumerator ContinuousSpawning()
+    {
+        while (generating)
         {
-            SpawnCollectible(obs.destroyedBy);
-            GameManager.WaitForUnscaledSeconds(spawnDelay);
+            StartCoroutine(SpawnRandomObstacle());
+            yield return GameManager.WaitForUnscaledSeconds(spawnDelay/Random.Range(1.3f, 1.6f));
         }
-        obstacle.GetComponent<Obstacle>().Set(obs);
-        GameObject newObstacle = Instantiate(obstacle);
-        Destroy(newObstacle, 10);
+
     }
 }
