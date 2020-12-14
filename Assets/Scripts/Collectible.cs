@@ -42,6 +42,7 @@ public class Collectible: MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
+            EventLogger.LogEvent(gameObject, EventAction.Clicked);
             Inventory inv = GameObject.Find("Inventory").GetComponent<Inventory>();
             inv.GiveItem(id);
             Destroy(gameObject);

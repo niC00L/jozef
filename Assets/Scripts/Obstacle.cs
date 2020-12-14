@@ -45,9 +45,9 @@ public class Obstacle: MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log(Time.timeScale);
         if (Time.timeScale == 1)
-        {            
+        {
+            EventLogger.LogEvent(gameObject, EventAction.Clicked);
             Inventory inv = FindObjectOfType<Inventory>();            
             inv.SetObstacle(gameObject);
             inv.OpenInventory();
@@ -57,10 +57,11 @@ public class Obstacle: MonoBehaviour
     public void UseItem(int itemId)
     {
         if (itemId == destroyedBy)
-        {
-            Destroy(gameObject);
+        {            
             GameManager manager = FindObjectOfType<GameManager>();
-            manager.ObstacleDestroyed(1);
+            manager.AddScore(1);
+            EventLogger.LogEvent(gameObject, EventAction.Destroyed);
+            Destroy(gameObject);
         }
     }
 }

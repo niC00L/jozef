@@ -74,14 +74,17 @@ public class Inventory : MonoBehaviour
         inventoryUI.UpdateSlot(id, characterItems[id].count);
     }
 
-    public void UseItem(int id)
+    public void UseItem(Collectible item)
     {
+        int id = item.id;
         if (characterItems[id].count >= 1)
         {
-            characterItems[id].count -= 1;
-            inventoryUI.UpdateSlot(id, characterItems[id].count);
+            //TODO how to log inventory click
 
-            activeObstacle.GetComponent<Obstacle>().UseItem(id);
+            //EventLogger.LogEvent(item, EventAction.Used);
+            characterItems[id].count -= 1;
+            inventoryUI.UpdateSlot(id, characterItems[id].count);            
+            activeObstacle.GetComponent<Obstacle>().UseItem(id);            
         }
         CloseInventory();
     }

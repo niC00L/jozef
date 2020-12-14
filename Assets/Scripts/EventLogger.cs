@@ -1,34 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class EventLogger : MonoBehaviour
 {
-    private List<GameEvent> eventLog = new List<GameEvent>();
+    private static EventLogger _instance;
+    public static EventLogger Instance { get { return _instance; } }
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
-    public void LogEvent(GameEvent gameEvent) {
+    private static List<GameEvent> eventLog = new List<GameEvent>();
+
+    public static void LogEvent(GameEvent gameEvent) {
         eventLog.Add(gameEvent);
+    }
+
+    public static void LogEvent(GameObject gameObject, EventAction action)
+    {
+        eventLog.Add(new GameEvent(gameObject, action));
+    }
+
+    public static void WriteToConsole()
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach(GameEvent log in eventLog)
+        {
+            sb.Append(log.ToString());
+        }
+        Debug.Log(sb.ToString());
     }
 }
 
 //TODO log events from appropriate classes
+//TODO log objects even when they are destroyed
 
 
 public class GameEvent
 {
     private int difficulty;
-    private Time time;
+    private float time;
     private int score;
-    private GameObject gameObject;   // Collectible/Obstacle/GameManager
+    private GameObject gameObject;   // Collectible/Obstacle/Null
     private EventAction action;
 
-    public GameEvent(int difficulty, Time time, int score, GameObject gameObject, EventAction action)
+    public GameEvent(GameObject gameObject, EventAction action)
     {
-        this.difficulty = difficulty;
-        this.time = time;
-        this.score = score;
+        this.difficulty = DifficultyManager.Difficulty;
+        this.time = Time.time;
+        this.score = GameManager.score;
         this.gameObject = gameObject;
         this.action = action;
+    }
+
+    public override string ToString() {
+        StringBuilder str = new StringBuilder();
+        str.Append("Time: " + time + "; Difficulty: " + difficulty + "; Score: " + score + "; Action: " + action + "");
+        if (gameObject)
+        {
+            str.Append("; Object: " + gameObject);
+        }
+        str.Append("\n");
+        return str.ToString();
     }
 }
 

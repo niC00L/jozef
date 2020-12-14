@@ -28,22 +28,22 @@ public class Spawner : MonoBehaviour
         collectible.GetComponent<Collectible>().Set(database.GetCollectibleById(collectibleId));
         GameObject newCollectible = Instantiate(collectible);
         newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
+        EventLogger.LogEvent(newCollectible, EventAction.Spawned);
         Destroy(newCollectible, 10);
     }
 
     private IEnumerator SpawnRandomObstacle()
-    {
-        
-            Obstacle obs = database.GetRandomObstacle();
-            for (int i = 0; i < collectiblesBeforeObstacles; i++)
-            {
-                yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
-                SpawnCollectible(obs.destroyedBy);
-            }
+    {        
+        Obstacle obs = database.GetRandomObstacle();
+        for (int i = 0; i < collectiblesBeforeObstacles; i++)
+        {
             yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
-            obstacle.GetComponent<Obstacle>().Set(obs);
-            GameObject newObstacle = Instantiate(obstacle);
-        
+            SpawnCollectible(obs.destroyedBy);
+        }
+        yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+        obstacle.GetComponent<Obstacle>().Set(obs);
+        GameObject newObstacle = Instantiate(obstacle);
+        EventLogger.LogEvent(newObstacle, EventAction.Spawned);
     }
 
     private IEnumerator ContinuousSpawning()

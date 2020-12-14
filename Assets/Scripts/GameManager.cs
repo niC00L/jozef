@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIManager UIManager;
 
-    private int score = 0;
+    public static int score = 0;
     private bool gameOver = false;
 
     void Start()
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             count--;
         }
         UIManager.CountdownFinish();
+        EventLogger.LogEvent(new GameEvent(null, EventAction.Start));
         Time.timeScale = 1;
     }
 
@@ -88,11 +89,14 @@ public class GameManager : MonoBehaviour
         UIManager.GameOver(score);
         gameOver = true;
         Time.timeScale = 0;
+        EventLogger.LogEvent(new GameEvent(null, EventAction.End));
+        EventLogger.WriteToConsole();
     }
 
-    public void ObstacleDestroyed(int points)
+    public void AddScore(int points)
     {
-        UIManager.SetScore(score + points);
+        score += points;
+        UIManager.SetScore(score);
     }
 
     public void Pause()
