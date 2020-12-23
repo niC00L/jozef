@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Obstacle: MonoBehaviour
@@ -23,6 +24,13 @@ public class Obstacle: MonoBehaviour
         this.destroyedBy = obstacle.destroyedBy;
         this.title = obstacle.title;
         this.icon = Resources.Load<Sprite>("Sprites/Obstacles/" + obstacle.title);
+    }
+
+    public override string ToString()
+    {
+        StringBuilder str = new StringBuilder();
+        str.Append("Obstacle <ID: " + id + ", Name: " + title);
+        return str.ToString();
     }
 
     public void Set(int id, int destroyedBy, string title)

@@ -42,7 +42,6 @@ public class EventLogger : MonoBehaviour
 }
 
 //TODO log events from appropriate classes
-//TODO log objects even when they are destroyed
 
 
 public class GameEvent
@@ -50,24 +49,44 @@ public class GameEvent
     private int difficulty;
     private float time;
     private int score;
-    private GameObject gameObject;   // Collectible/Obstacle/Null
+    private EventObject eventObject;   // Collectible/Obstacle/Null
     private EventAction action;
+
 
     public GameEvent(GameObject gameObject, EventAction action)
     {
         this.difficulty = DifficultyManager.Difficulty;
         this.time = Time.time;
         this.score = GameManager.score;
-        this.gameObject = gameObject;
+        if (gameObject != null)
+        {
+            if (gameObject.GetComponent<Collectible>() != null)
+            {
+                this.eventObject = new EventObject(gameObject.GetInstanceID(), gameObject.GetComponent<Collectible>());
+            }
+            else if (gameObject.GetComponent<Obstacle>() != null)
+            {
+                this.eventObject = new EventObject(gameObject.GetInstanceID(), gameObject.GetComponent<Obstacle>());
+            }
+        }
+        this.action = action;
+    }
+
+    public GameEvent(Collectible col, EventAction action)
+    {
+        this.difficulty = DifficultyManager.Difficulty;
+        this.time = Time.time;
+        this.score = GameManager.score;
+        this.eventObject = new EventObject(col);        
         this.action = action;
     }
 
     public override string ToString() {
         StringBuilder str = new StringBuilder();
         str.Append("Time: " + time + "; Difficulty: " + difficulty + "; Score: " + score + "; Action: " + action + "");
-        if (gameObject)
+        if (eventObject != null)
         {
-            str.Append("; Object: " + gameObject);
+            str.Append("; Object: " + eventObject);
         }
         str.Append("\n");
         return str.ToString();
@@ -78,8 +97,44 @@ public enum EventAction
 {
     Start,          // game start
     End,            // game end
-    Clicked,        // clicked by player (collectible or obstacle or none)
+    Collected,       // collected to inventory (collectible)
+    Clicked,        // clicked by player (obstacle)
     Spawned,        // created by spawner (collectible or obstacle)
     Used,           // used from inventory (collectible)
     Destroyed       // destroyed after using item from inventory (obstacle)
+}
+
+public class EventObject
+{
+    int instanceId = -1;
+    MonoBehaviour item;
+
+    public EventObject(int id, Collectible col)
+    {
+        this.instanceId = id;
+        this.item = col;
+    }
+
+    public EventObject(int id, Obstacle obs)
+    {
+        this.instanceId = id;
+        this.item = obs;
+    }
+
+    public EventObject(Collectible col)
+    {
+        this.item = col;
+    }
+
+    public override string ToString()
+    {
+        StringBuilder str = new StringBuilder();
+        str.Append("EventObject <");
+        if (instanceId!= -1)
+        {
+            str.Append("InstanceID: " + instanceId + ", ");
+        }
+        str.Append("Item: " + item);
+        return str.ToString();
+    }
 }

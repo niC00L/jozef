@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIManager UIManager;
 
+    [SerializeField]
+    private Spawner spawner;
+
     public static int score = 0;
     private bool gameOver = false;
 
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
             count--;
         }
         UIManager.CountdownFinish();
-        EventLogger.LogEvent(new GameEvent(null, EventAction.Start));
+        EventLogger.LogEvent(null, EventAction.Start);
         Time.timeScale = 1;
     }
 
@@ -89,7 +92,8 @@ public class GameManager : MonoBehaviour
         UIManager.GameOver(score);
         gameOver = true;
         Time.timeScale = 0;
-        EventLogger.LogEvent(new GameEvent(null, EventAction.End));
+        spawner.Stop();
+        EventLogger.LogEvent(null, EventAction.End);
         EventLogger.WriteToConsole();
     }
 

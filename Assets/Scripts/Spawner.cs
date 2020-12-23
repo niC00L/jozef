@@ -55,4 +55,9 @@ public class Spawner : MonoBehaviour
         }
 
     }
+
+    public void Stop()
+    {
+        this.generating = false;
+    }
 }
