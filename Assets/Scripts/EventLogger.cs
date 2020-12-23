@@ -30,6 +30,16 @@ public class EventLogger : MonoBehaviour
         eventLog.Add(new GameEvent(gameObject, action));
     }
 
+    public static void LogEvent(Collectible gameObject, EventAction action)
+    {
+        eventLog.Add(new GameEvent(gameObject, action));
+    }
+
+    public static void LogEvent(EventAction action)
+    {
+        eventLog.Add(new GameEvent(action));
+    }
+
     public static void WriteToConsole()
     {
         StringBuilder sb = new StringBuilder();
@@ -81,6 +91,15 @@ public class GameEvent
         this.action = action;
     }
 
+    public GameEvent(EventAction action)
+    {
+        this.difficulty = DifficultyManager.Difficulty;
+        this.time = Time.time;
+        this.score = GameManager.score;
+        this.eventObject = null;
+        this.action = action;
+    }
+
     public override string ToString() {
         StringBuilder str = new StringBuilder();
         str.Append("Time: " + time + "; Difficulty: " + difficulty + "; Score: " + score + "; Action: " + action + "");
@@ -97,7 +116,7 @@ public enum EventAction
 {
     Start,          // game start
     End,            // game end
-    Collected,       // collected to inventory (collectible)
+    Collected,      // collected to inventory (collectible)
     Clicked,        // clicked by player (obstacle)
     Spawned,        // created by spawner (collectible or obstacle)
     Used,           // used from inventory (collectible)
@@ -134,7 +153,7 @@ public class EventObject
         {
             str.Append("InstanceID: " + instanceId + ", ");
         }
-        str.Append("Item: " + item);
+        str.Append("Item: " + item + ">");
         return str.ToString();
     }
 }

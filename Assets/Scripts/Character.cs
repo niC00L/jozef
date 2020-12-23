@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            gameManager.GameOver();
+            gameManager.GameOver(collision.gameObject);
         }
     }
 }

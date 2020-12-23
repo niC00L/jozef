@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             count--;
         }
         UIManager.CountdownFinish();
-        EventLogger.LogEvent(null, EventAction.Start);
+        EventLogger.LogEvent(EventAction.Start);
         Time.timeScale = 1;
     }
 
@@ -87,13 +87,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOver(GameObject killedBy)
     {
         UIManager.GameOver(score);
         gameOver = true;
         Time.timeScale = 0;
         spawner.Stop();
-        EventLogger.LogEvent(null, EventAction.End);
+        EventLogger.LogEvent(killedBy, EventAction.End);
+        //TODO write to file
         EventLogger.WriteToConsole();
     }
 

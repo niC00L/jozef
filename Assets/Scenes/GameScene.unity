@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIManager: {fileID: 1184881180}
-  EventLogger: {fileID: 299351058}
+  spawner: {fileID: 969198696}
 --- !u!4 &635151702
 Transform:
   m_ObjectHideFlags: 0

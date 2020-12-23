@@ -79,9 +79,7 @@ public class Inventory : MonoBehaviour
         int id = item.id;
         if (characterItems[id].count >= 1)
         {
-            //TODO how to log inventory click
-
-            //EventLogger.LogEvent(item, EventAction.Used);
+            EventLogger.LogEvent(item, EventAction.Used);
             characterItems[id].count -= 1;
             inventoryUI.UpdateSlot(id, characterItems[id].count);            
             activeObstacle.GetComponent<Obstacle>().UseItem(id);            

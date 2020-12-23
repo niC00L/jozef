@@ -19,7 +19,7 @@ public class Collectible: MonoBehaviour
     public override string ToString()
     {
         StringBuilder str = new StringBuilder();
-        str.Append("Collectible <ID: " + id + ", Name: " + title);
+        str.Append("Collectible <ID: " + id + ", Name: " + title + ">");
         return str.ToString();
     }
 
