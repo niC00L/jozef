@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Scroll : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float speed = 1;
-    void Start()
-    {
-        
-    }
+    //speed by difficulty
 
-    // Update is called once per frame
+    [SerializeField]
+    private float speed = 1;
+
     void Update()
     {
-        Vector2 offset = new Vector2(Time.time * speed, 0);
+        Vector2 offset = new Vector2(Time.time * speed * DifficultyManager.GameSpeed, 0);
 
         GetComponent<Renderer>().material.mainTextureOffset = offset;
     }

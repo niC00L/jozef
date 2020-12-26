@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Collectible: MonoBehaviour
@@ -13,6 +14,13 @@ public class Collectible: MonoBehaviour
         this.id = id;
         this.title = title;
         this.icon = Resources.Load<Sprite>("Sprites/Collectibles/" + title);
+    }
+
+    public override string ToString()
+    {
+        StringBuilder str = new StringBuilder();
+        str.Append("Collectible <ID: " + id + ", Name: " + title + ">");
+        return str.ToString();
     }
 
     public Collectible(Collectible collectible)
@@ -42,6 +50,7 @@ public class Collectible: MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
+            EventLogger.LogEvent(gameObject, EventAction.Collected);
             Inventory inv = GameObject.Find("Inventory").GetComponent<Inventory>();
             inv.GiveItem(id);
             Destroy(gameObject);

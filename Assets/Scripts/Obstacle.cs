@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Obstacle: MonoBehaviour
@@ -9,7 +10,6 @@ public class Obstacle: MonoBehaviour
     public string title;
     public Sprite icon;
 
-    //TODO some obstacles are behind ground
     public Obstacle(int id, int destroyedBy, string title)
     {
         this.id = id;
@@ -24,6 +24,13 @@ public class Obstacle: MonoBehaviour
         this.destroyedBy = obstacle.destroyedBy;
         this.title = obstacle.title;
         this.icon = Resources.Load<Sprite>("Sprites/Obstacles/" + obstacle.title);
+    }
+
+    public override string ToString()
+    {
+        StringBuilder str = new StringBuilder();
+        str.Append("Obstacle <ID: " + id + ", Name: " + title);
+        return str.ToString();
     }
 
     public void Set(int id, int destroyedBy, string title)
@@ -46,9 +53,9 @@ public class Obstacle: MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log(Time.timeScale);
         if (Time.timeScale == 1)
-        {            
+        {
+            EventLogger.LogEvent(gameObject, EventAction.Clicked);
             Inventory inv = FindObjectOfType<Inventory>();            
             inv.SetObstacle(gameObject);
             inv.OpenInventory();
@@ -58,10 +65,11 @@ public class Obstacle: MonoBehaviour
     public void UseItem(int itemId)
     {
         if (itemId == destroyedBy)
-        {
-            Destroy(gameObject);
+        {            
             GameManager manager = FindObjectOfType<GameManager>();
-            manager.ObstacleDestroyed(1);
+            manager.AddScore(1);
+            EventLogger.LogEvent(gameObject, EventAction.Destroyed);
+            Destroy(gameObject);
         }
     }
 }

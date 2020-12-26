@@ -4,43 +4,60 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public float maxTime = 2;
-    public float timer = 0;
-    public GameObject collectible;
-    public GameObject obstacle;
-    public Database database;
 
-    //TODO improve this
-    private int fn = 0;
+    [SerializeField]
+    private GameObject collectible;
+    [SerializeField]
+    private GameObject obstacle;    
+    [SerializeField]
+    private Database database;
 
-    void Update()
+    private bool generating = true;
+
+    public int collectiblesBeforeObstacles = 2;
+    public float spawnDelay = 3f;
+
+
+    private void Start()
     {
-        if (timer > maxTime)
+        StartCoroutine(ContinuousSpawning());
+    }
+
+    private void SpawnCollectible(int collectibleId)
+    {
+        collectible.GetComponent<Collectible>().Set(database.GetCollectibleById(collectibleId));
+        GameObject newCollectible = Instantiate(collectible);
+        newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
+        EventLogger.LogEvent(newCollectible, EventAction.Spawned);
+        Destroy(newCollectible, 10);
+    }
+
+    private IEnumerator SpawnRandomObstacle()
+    {        
+        Obstacle obs = database.GetRandomObstacle();
+        for (int i = 0; i < collectiblesBeforeObstacles; i++)
         {
-            if (fn % 2 == 0)
-            {
-                collectible.GetComponent<Collectible>().Set(database.GetCollectible());
-                GameObject newCollectible = Instantiate(collectible);
-                newCollectible.transform.position = transform.position + new Vector3(0.0f, Random.Range(-0.5f, 5.0f), 0.0f);
-                newCollectible.GetComponent<Move>().speed += Random.Range(-1.0f, 1.0f);
-                Destroy(newCollectible, 10);
-            }
-            else
-            {
-                //TODO if player does not have item anymore after obstacle is spawned
-                var obsFromDb = database.GetObstacle();
-                if (obsFromDb is Obstacle)
-                {
-                    obstacle.GetComponent<Obstacle>().Set(database.GetObstacle());
-                    GameObject newObstacle = Instantiate(obstacle);
-                    //newObstacle.transform.position = transform.position + new Vector3(0.0f, Random.Range(-1.0f, 3.0f), 0.0f);
-                    newObstacle.GetComponent<Move>().speed += Random.Range(-0.5f, 0.5f);
-                    Destroy(newObstacle, 10);
-                }
-            }
-            timer = 0;
-            fn++;
+            yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+            SpawnCollectible(obs.destroyedBy);
         }
-        timer += Time.deltaTime;
+        yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+        obstacle.GetComponent<Obstacle>().Set(obs);
+        GameObject newObstacle = Instantiate(obstacle);
+        EventLogger.LogEvent(newObstacle, EventAction.Spawned);
+    }
+
+    private IEnumerator ContinuousSpawning()
+    {
+        while (generating)
+        {
+            StartCoroutine(SpawnRandomObstacle());
+            yield return GameManager.WaitForUnscaledSeconds(spawnDelay/Random.Range(1.3f, 1.6f));
+        }
+
+    }
+
+    public void Stop()
+    {
+        this.generating = false;
     }
 }

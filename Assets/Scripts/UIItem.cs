@@ -33,6 +33,6 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         Inventory inv = FindObjectOfType<Inventory>();
-        inv.UseItem(item.item.id);
+        inv.UseItem(item.item);
     }
 }
