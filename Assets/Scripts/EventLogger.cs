@@ -65,7 +65,7 @@ public class GameEvent
 
     public GameEvent(GameObject gameObject, EventAction action)
     {
-        this.difficulty = DifficultyManager.Difficulty;
+        this.difficulty = DifficultyManager.difficulty;
         this.time = Time.time;
         this.score = GameManager.score;
         if (gameObject != null)
@@ -84,7 +84,7 @@ public class GameEvent
 
     public GameEvent(Collectible col, EventAction action)
     {
-        this.difficulty = DifficultyManager.Difficulty;
+        this.difficulty = DifficultyManager.difficulty;
         this.time = Time.time;
         this.score = GameManager.score;
         this.eventObject = new EventObject(col);        
@@ -93,7 +93,7 @@ public class GameEvent
 
     public GameEvent(EventAction action)
     {
-        this.difficulty = DifficultyManager.Difficulty;
+        this.difficulty = DifficultyManager.difficulty;
         this.time = Time.time;
         this.score = GameManager.score;
         this.eventObject = null;

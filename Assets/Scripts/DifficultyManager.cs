@@ -19,9 +19,59 @@ public class DifficultyManager : MonoBehaviour
         }
     }
 
+    public static int difficulty = 1;
+    
+    [SerializeField]
+    private static bool adaptiveDifficulty = false;
 
-    public static int Difficulty = 1;
-    public static float GameSpeed = 1f;
-    public static bool adaptiveDifficulty = false;
+    public static float gameSpeed = 1f;
 
+    private static float difficultyChangeDelay = 3f;
+
+
+    private void Start()
+    {
+        if (!adaptiveDifficulty)
+        {
+            StartCoroutine(linearDifficultyIncrease());
+        }
+        else
+        {
+            StartCoroutine(adaptiveDifficultyChange());
+        }
+    }
+    public static void changeDifficulty(int changeValue = 1)
+    {
+        difficulty += changeValue;
+    }
+
+    private IEnumerator linearDifficultyIncrease(int increaseValue = 1) 
+    {
+        while (GameManager.gameOver)
+        {
+            yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
+            changeDifficulty(increaseValue);
+        }
+    }
+
+    private IEnumerator adaptiveDifficultyChange()
+    {
+        int oldHRdata = getFakeHeartRateData();
+        while (GameManager.gameOver)
+        {
+            yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
+            int newHRData = getFakeHeartRateData();
+            int HRdiff = oldHRdata - newHRData;
+            //TODO change difficulty by data
+            oldHRdata = newHRData;
+        }
+    }
+
+    private int getFakeHeartRateData()
+    {
+        //TODO return normal fake data
+        return 90;
+    }
+
+    //TODO update speed by difficulty
 }

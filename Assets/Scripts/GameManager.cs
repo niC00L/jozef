@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
 
     public static int score = 0;
-    private bool gameOver = false;
+    public static bool gameOver = false;
 
     void Start()
     {        
