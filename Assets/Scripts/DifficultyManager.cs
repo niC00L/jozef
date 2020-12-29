@@ -24,9 +24,18 @@ public class DifficultyManager : MonoBehaviour
     [SerializeField]
     private static bool adaptiveDifficulty = false;
 
+    public static float defaultGameSpeed = 1f;
+
     public static float gameSpeed = 1f;
 
     private static float difficultyChangeDelay = 3f;
+
+    private static int adaptiveDifficultyFactor = 1;
+
+    private static int HRceiling = 90; // max value of heart rate above which the game starts getting easier
+
+    [SerializeField]
+    private HeartRate heartRate;
 
 
     private void Start()
@@ -40,6 +49,12 @@ public class DifficultyManager : MonoBehaviour
             StartCoroutine(adaptiveDifficultyChange());
         }
     }
+
+    private void Update()
+    {
+        gameSpeed = defaultGameSpeed + Mathf.RoundToInt(difficulty / 50);
+    }
+
     public static void changeDifficulty(int changeValue = 1)
     {
         difficulty += changeValue;
@@ -47,7 +62,7 @@ public class DifficultyManager : MonoBehaviour
 
     private IEnumerator linearDifficultyIncrease(int increaseValue = 1) 
     {
-        while (GameManager.gameOver)
+        while (!GameManager.gameOver)
         {
             yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
             changeDifficulty(increaseValue);
@@ -56,22 +71,19 @@ public class DifficultyManager : MonoBehaviour
 
     private IEnumerator adaptiveDifficultyChange()
     {
-        int oldHRdata = getFakeHeartRateData();
-        while (GameManager.gameOver)
+        while (!GameManager.gameOver)
         {
             yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
-            int newHRData = getFakeHeartRateData();
-            int HRdiff = oldHRdata - newHRData;
-            //TODO change difficulty by data
-            oldHRdata = newHRData;
+            int HRdata = heartRate.getHeartRate();            
+            if (HRdata > HRceiling)
+            {
+                changeDifficulty(adaptiveDifficultyFactor * -1);
+            }
+            else if (HRdata < HRceiling)
+            {
+                changeDifficulty(adaptiveDifficultyFactor);
+            }
         }
     }
-
-    private int getFakeHeartRateData()
-    {
-        //TODO return normal fake data
-        return 90;
-    }
-
-    //TODO update speed by difficulty
+  
 }
