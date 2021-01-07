@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
             inventoryUI.InitSlot(i, characterItems[i]);
         }
         inventoryUI.gameObject.SetActive(false);
-        inventoryOpenDuration /= DifficultyManager.GameSpeed;
+        inventoryOpenDuration /= DifficultyManager.gameSpeed;
     }
 
     public void SetObstacle(GameObject obstacle)
@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour
     {
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.transform.position = Input.mousePosition;        
-        Time.timeScale = inventoryOpenTimeScale * DifficultyManager.GameSpeed;
+        Time.timeScale = inventoryOpenTimeScale * DifficultyManager.gameSpeed;
         StartCoroutine(InventoryCountdown(inventoryOpenDuration));
     }
 

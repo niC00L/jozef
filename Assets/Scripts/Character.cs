@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        animator.speed = defaultAnimatorSpeed * DifficultyManager.GameSpeed;
+        animator.speed = defaultAnimatorSpeed * DifficultyManager.gameSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

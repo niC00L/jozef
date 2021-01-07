@@ -19,9 +19,71 @@ public class DifficultyManager : MonoBehaviour
         }
     }
 
+    public static int difficulty = 1;
+    
+    [SerializeField]
+    private static bool adaptiveDifficulty = false;
 
-    public static int Difficulty = 1;
-    public static float GameSpeed = 1f;
-    public static bool adaptiveDifficulty = false;
+    public static float defaultGameSpeed = 1f;
 
+    public static float gameSpeed = 1f;
+
+    private static float difficultyChangeDelay = 3f;
+
+    private static int adaptiveDifficultyFactor = 1;
+
+    private static int HRceiling = 90; // max value of heart rate above which the game starts getting easier
+
+    [SerializeField]
+    private HeartRate heartRate;
+
+
+    private void Start()
+    {
+        if (!adaptiveDifficulty)
+        {
+            StartCoroutine(linearDifficultyIncrease());
+        }
+        else
+        {
+            StartCoroutine(adaptiveDifficultyChange());
+        }
+    }
+
+    private void Update()
+    {
+        gameSpeed = defaultGameSpeed + Mathf.RoundToInt(difficulty / 50);
+    }
+
+    public static void changeDifficulty(int changeValue = 1)
+    {
+        difficulty += changeValue;
+    }
+
+    private IEnumerator linearDifficultyIncrease(int increaseValue = 1) 
+    {
+        while (!GameManager.gameOver)
+        {
+            yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
+            changeDifficulty(increaseValue);
+        }
+    }
+
+    private IEnumerator adaptiveDifficultyChange()
+    {
+        while (!GameManager.gameOver)
+        {
+            yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
+            int HRdata = heartRate.getHeartRate();            
+            if (HRdata > HRceiling)
+            {
+                changeDifficulty(adaptiveDifficultyFactor * -1);
+            }
+            else if (HRdata < HRceiling)
+            {
+                changeDifficulty(adaptiveDifficultyFactor);
+            }
+        }
+    }
+  
 }

@@ -10,7 +10,7 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.left * speed * DifficultyManager.GameSpeed * Time.deltaTime;
+        transform.position += Vector3.left * speed * DifficultyManager.gameSpeed * Time.deltaTime;
     }
 
     public void ChangeSpeed(float speedAdd)
