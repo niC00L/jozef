@@ -17,6 +17,7 @@ public class MenuFunctions: MonoBehaviour
 
     public void Exit()
     {
+        HeartRate.disconnectWatch();
         Application.Quit();
     }
 }

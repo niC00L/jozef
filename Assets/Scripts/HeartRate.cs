@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeartRate : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class HeartRate : MonoBehaviour
     private static int sign = 1;
     public static bool fakeData = false;
 
-    private AndroidJavaClass javaClass = null;
-    private AndroidJavaObject activity = null;
+    private static AndroidJavaClass javaClass = null;
+    private static AndroidJavaObject activity = null;
+    private Text hrStatus = null;
 
     private static HeartRate _instance;
     public static HeartRate Instance { get { return _instance; } }
@@ -26,11 +28,10 @@ public class HeartRate : MonoBehaviour
             _instance = this;
         }
     }
-
-
-
+    
     private void Start()
     {
+        hrStatus =  GameObject.Find("HeartRateStatus").GetComponent<Text>();
         if (fakeData) {
             StartCoroutine(fakeHeartRateChange()); 
         }
@@ -39,19 +40,45 @@ public class HeartRate : MonoBehaviour
             javaClass = new AndroidJavaClass("com.nicool.foxrun.TestActivity");
             activity = javaClass.GetStatic<AndroidJavaObject>("sContext"); // this one works now
             activity.Call("startTracking");
-
         }
-
     }
-     
+
+    private void Update()
+    {
+        if (activity != null)
+        {
+            heartRate = activity.CallStatic<int>("getNewestHeartRate");
+            if (hrStatus != null)
+            {
+                if (heartRate < 50)
+                {
+                    hrStatus.text = "Waiting for data";
+                }
+                else
+                {
+                    hrStatus.text = "Heart Rate: " + heartRate;
+                }
+            }
+        }
+    }
+
     public int getFakeHeartRate()
     {
         return heartRate;
     }
 
     public void connectWatch()
-    {        
-        activity.Call("connect");
+    {
+        if (activity != null)
+        {
+            activity.Call("connect");
+            activity.Call("getData");
+        }
+    }
+
+    public static void disconnectWatch()
+    {
+        if (activity != null) activity.Call("stopTracking");
     }
 
     private IEnumerator fakeHeartRateChange()

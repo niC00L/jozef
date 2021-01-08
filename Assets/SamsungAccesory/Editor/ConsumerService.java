@@ -76,7 +76,6 @@ public class ConsumerService extends SAAgent {
 
     @Override
     protected void onFindPeerAgentsResponse(SAPeerAgent[] peerAgents, int result) {
-    Log.d("Unity", "findpeers responded" );
         if ((result == SAAgent.PEER_AGENT_FOUND) && (peerAgents != null)) {
 
             for(SAPeerAgent peerAgent:peerAgents)
@@ -149,7 +148,7 @@ public class ConsumerService extends SAAgent {
         @Override
         public void onReceive(int channelId, byte[] data) {
             final String message = new String(data);
-            addMessage("Received: ", message);
+            addMessage(message);
         }
 
         @Override
@@ -166,8 +165,6 @@ public class ConsumerService extends SAAgent {
     }
 
     public void findPeers() {
-       Log.d("Unity", "findpeers called: " );
-
        findPeerAgents();
     }
 
@@ -180,7 +177,6 @@ public class ConsumerService extends SAAgent {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            addMessage("Sent: ", data);
         }
         return retvalue;
     }
@@ -226,13 +222,7 @@ public class ConsumerService extends SAAgent {
         });
     }
 
-    private void addMessage(final String prefix, final String data) {
-        final String strToUI = prefix.concat(data);
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                //ConsumerActivity.addMessage(strToUI);
-            }
-        });
+    private void addMessage(final String data) {
+        TestActivity.addMessage(data);    
     }
 }

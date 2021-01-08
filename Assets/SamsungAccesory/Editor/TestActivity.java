@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
  
 import com.unity3d.player.UnityPlayerActivity;
@@ -17,7 +20,7 @@ public class TestActivity extends UnityPlayerActivity {
     private ConsumerService mBoundService;
     private boolean mServiceBound = false;
 
-    private List<Message> mMessages = Collections.synchronizedList(new ArrayList<Message>());
+    private static List<String> mMessages = Collections.synchronizedList(new ArrayList<String>());
 
  
     public static Context sContext;
@@ -51,27 +54,31 @@ public class TestActivity extends UnityPlayerActivity {
     public void connect() {
         mBoundService.findPeers();
     }
+    public void getData() {
+        mBoundService.sendData("give me data");
+    }
 
-    public void addMessage(final Message msg){
+    public static int getNewestHeartRate() {
+    int hr = -1;
+    if (mMessages.size() > 0) {
+        hr = Integer.parseInt(mMessages.get(mMessages.size() - 1));
+    }
+        return hr;
+    }
+
+    public static void addMessage(String msg){
         if (mMessages.size() == 5) {
             mMessages.remove(0);
         }
         mMessages.add(msg);
+        Log.d("Unity", "message added " + msg);
     }
  
     public void stopTracking() {
         if (mServiceBound) {
+            mBoundService.closeConnection();
             unbindService(mServiceConnection);
             mServiceBound = false;
-        }
-    }
-
-     private static final class Message {
-        String data;
-
-        public Message(String data) {
-            super();
-            this.data = data;
         }
     }
 }
