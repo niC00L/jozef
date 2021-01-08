@@ -83,9 +83,9 @@ connectionListener = {
                     "is requsting Service conncetion...");
 
         /* Check connecting peer by appName*/
-        if (peerAgent.appName === "HelloAccessoryConsumer") {
+        if (peerAgent.appName === "FoxRun") {
             SAAgent.acceptServiceConnectionRequest(peerAgent);
-            createHTML("Service connection request accepted.");
+            createHTML("Service connection request accepted.");            
 
         } else {
             SAAgent.rejectServiceConnectionRequest(peerAgent);
@@ -100,11 +100,17 @@ connectionListener = {
             dataOnReceive;
 
         createHTML("Service connection established");
+        
+        tizen.power.request('SCREEN', 'SCREEN_NORMAL');
+        tizen.power.request('CPU', 'CPU_AWAKE');
 
         /* Obtaining socket */
         SASocket = socket;
 
         onConnectionLost = function onConnectionLost (reason) {
+        	tizen.power.release('SCREEN');
+        	tizen.power.release('CPU');
+
             createHTML("Service Connection disconnected due to following reason:<br />" + reason);
         };
 
@@ -121,7 +127,7 @@ connectionListener = {
 
                function sendHrData(heartRate){
                     // return Data to Android
-                    SASocket.sendData(SAAgent.channelIds[0], 'HR: '+heartRate);
+                    SASocket.sendData(SAAgent.channelIds[0], heartRate);
                     createHTML("Send massage:<br />" +
                                 newData);
 
@@ -136,9 +142,9 @@ connectionListener = {
                    console.log('Heart rate: ' + hrmInfo.heartRate);
                    heartRateData = hrmInfo.heartRate;
                    // holding 15 seconds as HRM sensor needs some time 
-                   setTimeout(function(){
+                   //setTimeout(function(){
                        sendHrData(heartRateData);
-                       }, 15000);
+                     //  }, 15000);
 
                }
 

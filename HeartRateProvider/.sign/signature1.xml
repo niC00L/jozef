@@ -4,13 +4,13 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>T8kFISJHLbd9wPshy6HQLQ9w4v/IKXPQTaz3DQLwDd7aU28WUtL/RWGq91RAtQvKwS7qAhk+S/00
-td507NvdDw==</DigestValue>
+<DigestValue>1YalNvWcDGD9dxvynZXLeKt3T4aTkftbjISLLDFtZ5yVV3wCPSW7FNJy5f0LNt56rvZxxOam58Yi
+dokUmW/Nlg==</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>FCWdd3qQW5U7I9wmiNNRA71HUw7iLeECcrXyvSpw1LM/kM8cTR3rvCvmB6CkQMVovCYcyXXg8pIb
-h4DAcyrvhQ==</DigestValue>
+<DigestValue>wXPbW9C3unWU9hM/h+pgmqjJsv3+cpO5ybHg24CGwRuaxnj99Wi+JfnpZyrgrwLx1lLwVrVcA1Tk
+5BWJH6c4rA==</DigestValue>
 </Reference>
 <Reference URI="css%2Fstyle.css">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -19,8 +19,8 @@ dn/AEHMU/A==</DigestValue>
 </Reference>
 <Reference URI="icon.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>ZPP8I+sEArjF0+7EkyUxFIH0dB9obStrl9/tVsoY+XtoToKah6eZdsGciMyKFndF45lawM+CST7I
-CLUqxJt78g==</DigestValue>
+<DigestValue>io1eK7nszv8m+gOlwmV65itDe1oEiqn9CqYhQox0SQRBqhqZP2p9TWWjiJI4oUXbKZ0ium3OPjDA
+KVldErkeTQ==</DigestValue>
 </Reference>
 <Reference URI="index.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -29,8 +29,8 @@ mdxh1rpwSQ==</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>0l8+Mm0HOknN0huNvBm1N8pgATdTnbT+VscQOuMSXDrw2eQAp2JiinLPlQSIw4c6P0aP9hn0Khi0
-mLljcu3KUw==</DigestValue>
+<DigestValue>xQuuXKGr72bh3P6w3K/MZY6b3JRRX2CjbnI/gmfVQYWyRgGcJxsmPNU6VOXQX/ETBeH5XgOlJrTK
+XBZhbwS6tQ==</DigestValue>
 </Reference>
 <Reference URI="js%2Fcircle-helper.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -1172,11 +1172,11 @@ GyvKX9Snig==</DigestValue>
 </Reference>
 </SignedInfo>
 <SignatureValue>
-Ms1mkf+CzSSsKVRRcndzHvSl53IPBVn50QF1X54s2ec0ukJgH/TkYLaFX4nppzsoIBPR5fNg2Zwz
-4uMqaiKgMZw2RL1ghdgGnMqu1iVp1UI/96BLAjippuimCDTMcBHVomeBbLVSattqvE3qE+HqRuDV
-IuvH4vEpZ/zYLPTf/jPFphLHi/Vf+hv1mflY9f+EhtcK/rMhVgyZhz2HsSZdyvadS711xTabUAWP
-zODzctZEPc18TDBHqKc68aXXfJqtb873zId7R9QNfmFxkWEujfOM8UN8pcwpmlFg0gng7ZAzgYnY
-5m532JMpX0W0gpelarFQO3Qt61y+O5407IabAA==
+Zm/lBNOhjJlsX0JVBNx+A6IF9J8QQgtYa2AtUG83VHzWE64WFiQHNjXWgEEC/YBjdL3hwiliteen
+zi2F02eOR9E1UJwurRXH6Rlb8uNv1WoOrbsD9I9jBBzGr4rWvgi5SmwYuWfQucY3/MmzcJl67eJr
+EhWdqr7TJjDj1D+7sbTlBoi6unMkn9aAVMqXq5WuXGquzj+y1+OUDKeL66dMPT2HXx+oQCSTOmEG
+HSeiWkwdcI8k7jygTojJrJyMqNGg/LzEZ8jgoHGEdS4g11hYJC41qAhohtVUW9OAB/h5RsFnJ8Ud
+R0rlm91LfSNpgbwwFq2nbMgnkVWMgD6jfYJeGg==
 </SignatureValue>
 <KeyInfo>
 <X509Data>
