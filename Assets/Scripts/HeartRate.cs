@@ -50,19 +50,26 @@ public class HeartRate : MonoBehaviour
             heartRate = activity.CallStatic<int>("getNewestHeartRate");
             if (hrStatus != null)
             {
-                if (heartRate < 50)
-                {
-                    hrStatus.text = "Waiting for data";
-                }
-                else
-                {
+                if (heartRate > 50) 
+                { 
                     hrStatus.text = "Heart Rate: " + heartRate;
+                } else
+                {
+                    
+                    var statusText = activity.CallStatic<string>("getStatusText");                    
+                    if (statusText == "Connected" && heartRate != -69)
+                    {
+                        hrStatus.text = "Getting data";
+                    } else
+                    {
+                        hrStatus.text = statusText;
+                    }
                 }
             }
         }
     }
 
-    public int getFakeHeartRate()
+    public int getHeartRate()
     {
         return heartRate;
     }
@@ -71,7 +78,14 @@ public class HeartRate : MonoBehaviour
     {
         if (activity != null)
         {
-            activity.Call("connect");
+            activity.Call("connect");            
+        }
+    }
+
+    public void getData()
+    {
+        if (activity != null)
+        {
             activity.Call("getData");
         }
     }

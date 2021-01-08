@@ -77,7 +77,7 @@ public class ConsumerService extends SAAgent {
     @Override
     protected void onFindPeerAgentsResponse(SAPeerAgent[] peerAgents, int result) {
         if ((result == SAAgent.PEER_AGENT_FOUND) && (peerAgents != null)) {
-
+            Toast.makeText(getBaseContext(), "FINDPEER_DEVICE_FOUND", Toast.LENGTH_LONG).show();
             for(SAPeerAgent peerAgent:peerAgents)
                 requestServiceConnection(peerAgent);
         } else if (result == SAAgent.FINDPEER_DEVICE_NOT_CONNECTED) {
@@ -102,6 +102,7 @@ public class ConsumerService extends SAAgent {
     protected void onServiceConnectionResponse(SAPeerAgent peerAgent, SASocket socket, int result) {
         if (result == SAAgent.CONNECTION_SUCCESS) {
             this.mConnectionHandler = (ServiceConnection) socket;
+            Toast.makeText(getBaseContext(), "CONNECTION_SUCCESS", Toast.LENGTH_LONG).show();
             updateTextView("Connected");
         } else if (result == SAAgent.CONNECTION_ALREADY_EXIST) {
             updateTextView("Connected");
@@ -169,6 +170,7 @@ public class ConsumerService extends SAAgent {
     }
 
     public boolean sendData(final String data) {
+    Toast.makeText(getApplicationContext(), "GETTING_DATA", Toast.LENGTH_LONG).show();
         boolean retvalue = false;
         if (mConnectionHandler != null) {
             try {
@@ -214,12 +216,7 @@ public class ConsumerService extends SAAgent {
     }
 
     private void updateTextView(final String str) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                //ConsumerActivity.updateTextView(str);
-            }
-        });
+        TestActivity.updateStatusText(str);
     }
 
     private void addMessage(final String data) {

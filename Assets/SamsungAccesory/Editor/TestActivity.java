@@ -20,6 +20,8 @@ public class TestActivity extends UnityPlayerActivity {
     private ConsumerService mBoundService;
     private boolean mServiceBound = false;
 
+    private static String statusText = "Not connected";
+
     private static List<String> mMessages = Collections.synchronizedList(new ArrayList<String>());
 
  
@@ -46,6 +48,14 @@ public class TestActivity extends UnityPlayerActivity {
         sContext = this;
     }
  
+    public static void updateStatusText(String str) {
+        statusText = str;
+    }
+
+    public static String getStatusText() {
+        return statusText;
+    }
+
     public void startTracking() {
         Intent intent = new Intent(this, ConsumerService.class);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
@@ -59,7 +69,7 @@ public class TestActivity extends UnityPlayerActivity {
     }
 
     public static int getNewestHeartRate() {
-    int hr = -1;
+    int hr = -69; // returns -69 if no data were fetched yet
     if (mMessages.size() > 0) {
         hr = Integer.parseInt(mMessages.get(mMessages.size() - 1));
     }
