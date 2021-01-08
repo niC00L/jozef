@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - Obstacle
+  - HeartRate
   layers:
   - Default
   - TransparentFX

@@ -74,7 +74,7 @@ public class DifficultyManager : MonoBehaviour
         while (!GameManager.gameOver)
         {
             yield return GameManager.WaitForUnscaledSeconds(difficultyChangeDelay);
-            int HRdata = heartRate.getHeartRate();            
+            int HRdata = heartRate.getFakeHeartRate();            
             if (HRdata > HRceiling)
             {
                 changeDifficulty(adaptiveDifficultyFactor * -1);

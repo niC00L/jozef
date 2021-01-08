@@ -7,19 +7,54 @@ public class HeartRate : MonoBehaviour
     private int heartRate = 60;
     private int minHeartRate = 60;
     private int maxHeartRate = 100;
-    private int sign = 1;
-    // Start is called before the first frame update
+    private static int sign = 1;
+    public static bool fakeData = false;
+
+    private AndroidJavaClass javaClass = null;
+    private AndroidJavaObject activity = null;
+
+    private static HeartRate _instance;
+    public static HeartRate Instance { get { return _instance; } }
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
+
+
     private void Start()
     {
-        StartCoroutine(notSoFastHeartRateChange());
+        if (fakeData) {
+            StartCoroutine(fakeHeartRateChange()); 
+        }
+        else
+        {
+            javaClass = new AndroidJavaClass("com.nicool.foxrun.TestActivity");
+            activity = javaClass.GetStatic<AndroidJavaObject>("sContext"); // this one works now
+            activity.Call("startTracking");
+
+        }
+
     }
      
-    public int getHeartRate()
+    public int getFakeHeartRate()
     {
         return heartRate;
     }
 
-    private IEnumerator notSoFastHeartRateChange()
+    public void connectWatch()
+    {        
+        activity.Call("connect");
+    }
+
+    private IEnumerator fakeHeartRateChange()
     {
         int i = 0;
         while (!GameManager.gameOver)

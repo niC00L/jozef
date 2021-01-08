@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     {        
         Time.timeScale = 0;
         StartCoroutine(Countdown(3));
+#if UNITY_ANDROID && !UNITY_EDITOR
+        NativeAndroidToast.showAndroidToast("toast", 10);
+#else
+		Debug.Log("No Toast setup for this platform.");
+#endif
+
     }
 
     private IEnumerator Countdown(int seconds)
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
         UIManager.CountdownFinish();
         EventLogger.LogEvent(EventAction.Start);
         Time.timeScale = 1;
+        gameOver = false;
     }
 
 
