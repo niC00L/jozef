@@ -20,8 +20,11 @@ public class Inventory : MonoBehaviour
     private Image timer;
     private GameObject activeObstacle;
 
+    private IEnumerator countdownEnum = null;
+
     public void Start()
     {
+
         foreach (var item in database.collectibles)
         {
             characterItems.Add(new InventoryItem(0, item));
@@ -45,7 +48,8 @@ public class Inventory : MonoBehaviour
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.transform.position = Input.mousePosition;        
         Time.timeScale = inventoryOpenTimeScale * DifficultyManager.gameSpeed;
-        StartCoroutine(InventoryCountdown(inventoryOpenDuration));
+        countdownEnum = InventoryCountdown(inventoryOpenDuration);
+        StartCoroutine(countdownEnum);
     }
 
     private IEnumerator InventoryCountdown(float seconds)
@@ -66,6 +70,7 @@ public class Inventory : MonoBehaviour
     {
         inventoryUI.gameObject.SetActive(false);
         Time.timeScale = 1;
+        StopCoroutine(countdownEnum);
     }
 
     public void GiveItem(int id)
