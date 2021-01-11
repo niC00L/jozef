@@ -54,8 +54,6 @@ public class DifficultyManager : MonoBehaviour
     private void Update()
     {
         gameSpeed = Mathf.Lerp(gameSpeed, defaultGameSpeed + (difficulty / 50.0f), Time.deltaTime );
-
-        Debug.Log(gameSpeed + ", " + difficulty);
     }
 
     public static void changeDifficulty(int changeValue = 1)

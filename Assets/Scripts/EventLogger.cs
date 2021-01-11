@@ -81,7 +81,7 @@ public class GameEvent
     public GameEvent(GameObject gameObject, EventAction action)
     {
         this.difficulty = DifficultyManager.difficulty;
-        this.time = Time.time;
+        this.time = Time.timeSinceLevelLoad;
         this.score = GameManager.score;
         if (gameObject != null)
         {
