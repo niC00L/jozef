@@ -36,7 +36,8 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnRandomObstacle()
     {        
         Obstacle obs = database.GetRandomObstacle();
-        for (int i = 0; i < collectiblesBeforeObstacles; i++)
+        int actualCollectibles = Random.Range(1, collectiblesBeforeObstacles+1);
+        for (int i = 0; i < actualCollectibles; i++)
         {
             yield return new WaitForSeconds(spawnDelay);
             SpawnCollectible(obs.destroyedBy);
