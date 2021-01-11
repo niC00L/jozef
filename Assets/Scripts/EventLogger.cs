@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using UnityEngine;
 
@@ -43,15 +45,28 @@ public class EventLogger : MonoBehaviour
     public static void WriteToConsole()
     {
         StringBuilder sb = new StringBuilder();
-        foreach(GameEvent log in eventLog)
+        foreach (GameEvent log in eventLog)
         {
             sb.Append(log.ToString());
         }
         Debug.Log(sb.ToString());
     }
-}
 
-//TODO log events from appropriate classes
+    public static void WriteTiFile()
+    {
+        DateTime actualDateTime = DateTime.Now;
+        string dateString = actualDateTime.ToString("yyyy-MM-dd-HH-mm-ss");
+        string filePath = Application.persistentDataPath + "/gamelog-" + dateString + ".txt";
+        using (StreamWriter file = File.CreateText(filePath))
+        {
+            foreach (GameEvent log in eventLog)
+            {
+                file.WriteLine(log.ToString());
+            }
+        }
+
+    }
+}
 
 
 public class GameEvent
