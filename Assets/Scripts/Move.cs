@@ -6,7 +6,7 @@ public class Move : MonoBehaviour
 {
 
     //speed by difficulty
-    private float speed = 4.7f;
+    private float speed = 4.6f;
 
     private void Start()
     {
