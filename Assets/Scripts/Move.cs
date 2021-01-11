@@ -6,7 +6,12 @@ public class Move : MonoBehaviour
 {
 
     //speed by difficulty
-    private float speed = 4.9f;
+    private float speed = 4.7f;
+
+    private void Start()
+    {
+        speed *= DifficultyManager.gameSpeed;
+    }
 
     void Update()
     {

@@ -2034,7 +2034,7 @@ MonoBehaviour:
     type: 3}
   database: {fileID: 96899104}
   collectiblesBeforeObstacles: 2
-  spawnDelay: 3
+  spawnDelay: 2
 --- !u!4 &969198697
 Transform:
   m_ObjectHideFlags: 0

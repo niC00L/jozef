@@ -40,6 +40,8 @@ public class DifficultyManager : MonoBehaviour
 
     private void Start()
     {
+        difficulty = 1;
+        gameSpeed = defaultGameSpeed;
         if (!adaptiveDifficulty)
         {
             StartCoroutine(linearDifficultyIncrease());
@@ -52,7 +54,9 @@ public class DifficultyManager : MonoBehaviour
 
     private void Update()
     {
-        gameSpeed = defaultGameSpeed + Mathf.RoundToInt(difficulty / 50);
+        gameSpeed = Mathf.Lerp(gameSpeed, defaultGameSpeed + (difficulty / 50.0f), Time.deltaTime );
+
+        Debug.Log(gameSpeed + ", " + difficulty);
     }
 
     public static void changeDifficulty(int changeValue = 1)
