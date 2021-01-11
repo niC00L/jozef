@@ -52,7 +52,7 @@ public class EventLogger : MonoBehaviour
         Debug.Log(sb.ToString());
     }
 
-    public static void WriteTiFile()
+    public static void WriteToFile()
     {
         DateTime actualDateTime = DateTime.Now;
         string dateString = actualDateTime.ToString("yyyy-MM-dd-HH-mm-ss");

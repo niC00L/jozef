@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         EventLogger.LogEvent(killedBy, EventAction.End);
         //TODO write to file
         EventLogger.WriteToConsole();
-        EventLogger.WriteTiFile();
+        EventLogger.WriteToFile();
     }
 
     public void AddScore(int points)
