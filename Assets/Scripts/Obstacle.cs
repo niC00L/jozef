@@ -29,7 +29,7 @@ public class Obstacle: MonoBehaviour
     public override string ToString()
     {
         StringBuilder str = new StringBuilder();
-        str.Append("Obstacle <ID: " + id + ", Name: " + title);
+        str.Append("Obstacle <ID: " + id + ", Name: " + title + ">");
         return str.ToString();
     }
 
