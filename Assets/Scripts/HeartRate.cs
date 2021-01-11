@@ -37,8 +37,8 @@ public class HeartRate : MonoBehaviour
         }
         else
         {
-            javaClass = new AndroidJavaClass("com.nicool.foxrun.TestActivity");
-            activity = javaClass.GetStatic<AndroidJavaObject>("sContext"); // this one works now
+            javaClass = new AndroidJavaClass("com.nicool.foxrun.FoxRunActivity");
+            activity = javaClass.GetStatic<AndroidJavaObject>("sContext"); 
             activity.Call("startTracking");
         }
     }

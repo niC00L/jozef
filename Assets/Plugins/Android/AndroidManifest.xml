@@ -15,7 +15,7 @@
       android:targetSdkVersion="21" />
   
     <application>
-        <activity android:name="com.nicool.foxrun.TestActivity"
+        <activity android:name="com.nicool.foxrun.FoxRunActivity"
                   android:theme="@style/UnityThemeSelector">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

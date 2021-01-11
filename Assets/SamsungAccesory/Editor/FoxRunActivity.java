@@ -15,7 +15,7 @@ import java.util.List;
  
 import com.unity3d.player.UnityPlayerActivity;
  
-public class TestActivity extends UnityPlayerActivity {
+public class FoxRunActivity extends UnityPlayerActivity {
  
     private ConsumerService mBoundService;
     private boolean mServiceBound = false;
