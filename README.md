@@ -5,9 +5,9 @@ You have to collect items and use the right item at the right time to destroy ob
 Two versions of application exists. First one with linear increasing difficulty. Another one with adaptive difficulty affected 
 by heart rate provided by Samsung Gear S3 watch.
 
-![screenshot](https://imgur.com/U4KzpCh)\
-![screenshot](https://imgur.com/MvFjG9a)\
-![screenshot](https://imgur.com/Csg6BUH)
+![screenshot](https://i.imgur.com/hGrjdlI.png)\
+![screenshot](https://i.imgur.com/eV3qp1k.jpg)\
+![screenshot](https://i.imgur.com/cu9xCm6.jpg)
 
 **Sources**:
  - [Fonts](https://fonts.google.com/)
