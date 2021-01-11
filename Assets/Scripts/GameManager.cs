@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameOver = false;
+        score = 0;
         Time.timeScale = 0;
         StartCoroutine(Countdown(3));
     }
