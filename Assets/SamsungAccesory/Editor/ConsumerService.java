@@ -216,10 +216,10 @@ public class ConsumerService extends SAAgent {
     }
 
     private void updateTextView(final String str) {
-        TestActivity.updateStatusText(str);
+        FoxRunActivity.updateStatusText(str);
     }
 
     private void addMessage(final String data) {
-        TestActivity.addMessage(data);    
+        FoxRunActivity.addMessage(data);    
     }
 }
