@@ -12,7 +12,7 @@ by heart rate provided by Samsung Gear S3 watch.
 **Sources**:
  - [Fonts](https://fonts.google.com/)
  - [ConsumerService.java and watch app](https://stackoverflow.com/questions/40233692/how-to-integrate-samsung-gear-steps-in-android-application/40529913#40529913)
- - [TestActivity.java](https://forum.unity.com/threads/problem-with-start-bind-service-plugin.347728/)
+ - [FoxRunActivity.java](https://forum.unity.com/threads/problem-with-start-bind-service-plugin.347728/)
  - [Singleton pattern](https://blog.mzikmund.com/2019/01/a-modern-singleton-in-unity/) (DifficultyManager, HeartRate, GameManager, EventLogger)
 ```
 private static GameManager _instance;
