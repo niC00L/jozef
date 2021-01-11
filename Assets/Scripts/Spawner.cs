@@ -12,15 +12,16 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private Database database;
 
-    private bool generating = true;
-
     public int collectiblesBeforeObstacles = 2;
     public float spawnDelay = 3f;
+
+    private IEnumerator spawnerCoroutine = null;
 
 
     private void Start()
     {
-        StartCoroutine(ContinuousSpawning());
+        spawnerCoroutine = ContinuousSpawning();
+        StartCoroutine(spawnerCoroutine);
     }
 
     private void SpawnCollectible(int collectibleId)
@@ -37,10 +38,10 @@ public class Spawner : MonoBehaviour
         Obstacle obs = database.GetRandomObstacle();
         for (int i = 0; i < collectiblesBeforeObstacles; i++)
         {
-            yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+            yield return new WaitForSeconds(spawnDelay);
             SpawnCollectible(obs.destroyedBy);
         }
-        yield return GameManager.WaitForUnscaledSeconds(spawnDelay);
+        yield return new WaitForSeconds(spawnDelay);
         obstacle.GetComponent<Obstacle>().Set(obs);
         GameObject newObstacle = Instantiate(obstacle);
         EventLogger.LogEvent(newObstacle, EventAction.Spawned);
@@ -48,16 +49,16 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator ContinuousSpawning()
     {
-        while (generating)
+        while (true)
         {
             StartCoroutine(SpawnRandomObstacle());
-            yield return GameManager.WaitForUnscaledSeconds(spawnDelay/Random.Range(1.3f, 1.6f));
+            yield return new WaitForSeconds(spawnDelay/Random.Range(1.3f, 1.6f));
         }
 
     }
 
     public void Stop()
     {
-        this.generating = false;
+        StopCoroutine(spawnerCoroutine);
     }
 }
