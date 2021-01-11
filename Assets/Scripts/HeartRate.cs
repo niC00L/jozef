@@ -54,8 +54,7 @@ public class HeartRate : MonoBehaviour
                 { 
                     hrStatus.text = "Heart Rate: " + heartRate;
                 } else
-                {
-                    
+                {                    
                     var statusText = activity.CallStatic<string>("getStatusText");                    
                     if (statusText == "Connected" && heartRate != -69)
                     {
@@ -87,6 +86,7 @@ public class HeartRate : MonoBehaviour
         if (activity != null)
         {
             activity.Call("getData");
+            DifficultyManager.adaptiveDifficulty = true;
         }
     }
 

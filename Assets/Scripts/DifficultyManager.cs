@@ -21,8 +21,7 @@ public class DifficultyManager : MonoBehaviour
 
     public static int difficulty = 1;
     
-    [SerializeField]
-    private static bool adaptiveDifficulty = false;
+    public static bool adaptiveDifficulty = false;
 
     public static float defaultGameSpeed = 1f;
 
